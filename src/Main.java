@@ -5,5 +5,6 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("This is the start of RetroReviewer! hi");
+        System.out.println("bla");
     }
 }
