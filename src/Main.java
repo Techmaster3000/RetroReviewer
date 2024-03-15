@@ -1,7 +1,74 @@
 import java.util.Scanner;
-import java.util.Random;
 
-public class Main {
+
+class Main {
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        SpaceInvader();
+        System.out.println("This is the start of RetroReviewer!");
+
+        System.out.println("1. Zie ranglijst");
+        System.out.println("2. Geef review over game");
+        System.out.println("3. Ga naar uitverkoop");
+        System.out.println("4. Exit");
+
+        int keuze = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (keuze) {
+            
+            case 1:
+                rangLijst();
+                break;
+
+            case 2:
+                reviewKlant();
+                break;
+          
+            case 3:
+                uitverkoop();
+                break;
+            case 4:
+                System.out.println("Tot ziens");
+                break;
+            default:
+                System.out.println("Ongeldige keuze");
+                break;
+
+        }
+    }
+
+    private static void uitverkoop() {
+    }
+
+    private static void rangLijst() {
+    }
+
+    private static void reviewKlant() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Geef de naam van de game");
+        String gameNaam = scanner.nextLine();
+
+        System.out.println("Beoordeel de gameplay van 1 tot 10: ");
+        int gameplay = scanner.nextInt();
+
+        System.out.println("Beoordeel de graphics van 1 tot 10: ");
+        int graphics = scanner.nextInt();
+
+        System.out.println("Beoordeel de verhaallijn van 1 tot 10: ");
+        int verhaallijn = scanner.nextInt();
+
+        System.out.println("Geef een toelichting op de review: ");
+        String toelichting = scanner.nextLine();
+
+        double totaalScore = ((gameplay + graphics + verhaallijn) / 3);
+
+        System.out.println("De review is aangemaakt van de game: " + gameNaam);
+        System.out.println("Uw totaalscore is: " + totaalScore);
+
     private static final Scanner scanner = new Scanner(System.in);
     public static void SpaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -32,44 +99,3 @@ public class Main {
 
         }
     }
-    public static void MainMenu() {
-        System.out.println("RetroReviewer");
-        System.out.println("1. View Game Rankings");
-        System.out.println("2. Write Game Review");
-        System.out.println("3. Go to Products");
-        System.out.println("4. Exit RetroReviewer");
-        int input = scanner.nextInt();
-        switch (input) {
-            case 1:
-                System.out.println("View Game Review");
-                break;
-            case 2:
-                System.out.println("Create Game Review");
-                break;
-            case 3:
-                System.out.println("Go to Products");
-                break;
-            case 4:
-                //exit the program
-                GenerateExitText();
-                System.exit(0);
-
-                break;
-            default:
-                System.out.println("Invalid input");
-                System.out.flush();
-                MainMenu();
-
-        }
-    }
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-
-        SpaceInvader();
-        MainMenu();
-
-
-        SpaceInvader();
-    }
-}
