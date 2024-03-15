@@ -3,18 +3,12 @@ import java.util.Scanner;
 import java.util.Random;
 import java.io.File;
 
-/**
- * Main class for the RetroReviewer application.
- */
 public class Main {
     // Filepath for the reviews
     static String Filepath = "C:\\Users\\jagro\\IdeaProjects\\RetroReviewer\\src\\reviews\\";
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
 
-    /**
-     * Prints a Space Invader ASCII art to the console.
-     */
     public static void SpaceInvader() {
         System.out.println("\u001B[97m          ############");
         System.out.println("     ####################");
@@ -107,19 +101,6 @@ public class Main {
         scanner.close();
     }
 
-    /**
-     * Placeholder method for a sale feature.
-     */
-    public static void uitverkoop() {
-
-    }
-
-    /**
-     * Placeholder method for a ranking feature.
-     */
-    public static void rangLijst() {
-
-    }
 
     /**
      * Displays the main menu and handles user input for navigation.
@@ -132,7 +113,7 @@ public class Main {
         int input = scanner.nextInt();
         switch (input) {
             case 1:
-                rangLijst();
+                //rangLijst();
                 break;
 
             case 2:
@@ -140,7 +121,7 @@ public class Main {
                 break;
 
             case 3:
-                uitverkoop();
+                //uitverkoop();
                 break;
             case 4:
                 GenerateExitText();
