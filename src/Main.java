@@ -1,13 +1,15 @@
-import java.util.List;
-import java.util.Scanner;
-import java.util.Random;
 import java.io.File;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
-    // Filepath for the reviews
-    static String Filepath = "C:\\Users\\jagro\\IdeaProjects\\RetroReviewer\\src\\reviews\\";
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
+    // Filepath for the reviews
+    static String localDir = System.getProperty("user.dir");
+    static String Filepath = localDir + File.separator + "reviews" + File.separator;
 
     public static void SpaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -48,7 +50,6 @@ public class Main {
      * Writes the review to a file.
      */
     private static void reviewKlant() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Geef de naam van de game");
         String gameNaam = scanner.nextLine();
@@ -97,8 +98,19 @@ public class Main {
 
         Write write = new Write(filename + ".txt");
         write.writeAllLines(answers);
+        System.out.println("Bedankt voor uw review!");
+        scanner.reset();
+        //delay 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //clear the screen
+        //System.out.print("\033[H\033[2J");
+        System.out.flush();
+        MainMenu();
 
-        scanner.close();
     }
 
 
@@ -110,13 +122,22 @@ public class Main {
         System.out.println("2. Geef review over game");
         System.out.println("3. Ga naar uitverkoop");
         System.out.println("4. Exit");
-        int input = scanner.nextInt();
+        //handle input mismatch exception
+        int input = 0;
+        try {
+            input = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input");
+            System.out.flush();
+            MainMenu();
+        }
         switch (input) {
             case 1:
                 //rangLijst();
                 break;
 
             case 2:
+                scanner.nextLine();
                 reviewKlant();
                 break;
 
@@ -143,6 +164,5 @@ public class Main {
     public static void main(String[] args) {
         SpaceInvader();
         MainMenu();
-        SpaceInvader();
     }
 }
