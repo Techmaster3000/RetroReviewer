@@ -18,18 +18,28 @@ class Main {
         SpaceInvader();
         System.out.println("This is the start of RetroReviewer!");
 
-        System.out.println("1. Geef review over game");
-        System.out.println("2. Exit");
+        System.out.println("1. Zie ranglijst");
+        System.out.println("2. Geef review over game");
+        System.out.println("3. Ga naar uitverkoop");
+        System.out.println("4. Exit");
 
         int keuze = scanner.nextInt();
         scanner.nextLine();
 
         switch (keuze) {
-
+            
             case 1:
+                rangLijst();
+                break;
+
+            case 2:
                 reviewKlant();
                 break;
-            case 2:
+          
+            case 3:
+                uitverkoop();
+                break;
+            case 4:
                 System.out.println("Tot ziens");
                 break;
             default:
@@ -37,6 +47,12 @@ class Main {
                 break;
 
         }
+    }
+
+    private static void uitverkoop() {
+    }
+
+    private static void rangLijst() {
     }
 
     private static void reviewKlant() {
