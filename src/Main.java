@@ -4,24 +4,22 @@ import java.util.Random;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     public static void SpaceInvader() {
-        System.out.println("          ############");
+        System.out.println("\u001B[97m          ############");
         System.out.println("     ####################");
         System.out.println("    ########################");
         System.out.println("  ####  ####  ####  ####  ####");
         System.out.println("################################");
         System.out.println("    ######    ####    ######");
-        System.out.println("      ##                ##\n");
-
-
-
+        System.out.println("      ##                ##\n\u001B[32m");
     }
+
     public static void GenerateExitText() {
         switch(new Random().nextInt(4) + 1) {
             case 1:
                 System.out.println("Game Over!");
                 break;
             case 2:
-                System.out.println("\"You can now play as Luigi!\"");
+                System.out.println("\"Talk about a low-budget flight! No food or movies? I'm outta here!\"");
                 break;
             case 3:
                 System.out.println("\"Snake? Snaaaaaaake!\"");
@@ -36,9 +34,10 @@ public class Main {
     }
     public static void MainMenu() {
         System.out.println("RetroReviewer");
-        System.out.println("1. View Game Review");
-        System.out.println("2. Create Game Review");
-        System.out.println("3. Exit RetroReviewer");
+        System.out.println("1. View Game Rankings");
+        System.out.println("2. Write Game Review");
+        System.out.println("3. Go to Products");
+        System.out.println("4. Exit RetroReviewer");
         int input = scanner.nextInt();
         switch (input) {
             case 1:
@@ -48,6 +47,9 @@ public class Main {
                 System.out.println("Create Game Review");
                 break;
             case 3:
+                System.out.println("Go to Products");
+                break;
+            case 4:
                 //exit the program
                 GenerateExitText();
                 System.exit(0);
