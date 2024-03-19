@@ -107,8 +107,9 @@ public class Main {
             e.printStackTrace();
         }
         //clear the screen
-        //System.out.print("\033[H\033[2J");
+        System.out.print(" \\033[H\\033[2J");
         System.out.flush();
+        scanner.next();
         MainMenu();
 
     }
@@ -128,6 +129,9 @@ public class Main {
             input = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Invalid input");
+            scanner.next();
+            //clear the screen
+            System.out.print("\033[H\033[2J");
             System.out.flush();
             MainMenu();
         }
