@@ -3,6 +3,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Main {
     // Scanner object for user input
@@ -54,6 +55,10 @@ public class Main {
         System.out.println("Geef de naam van de game");
         String gameNaam = scanner.nextLine();
 
+        //ask for the genre
+        System.out.println("Geef het genre van de game: ");
+        String genre = scanner.nextLine();
+
         System.out.println("Beoordeel de gameplay van 1 tot 10: ");
         int gameplay = scanner.nextInt();
 
@@ -72,6 +77,7 @@ public class Main {
         double totaalScore = ((gameplay + graphics + verhaallijn) / 3);
 
         System.out.println("Review voor: " + gameNaam);
+        System.out.println("Genre: " + genre);
         System.out.println("Gameplay: " + gameplay);
         System.out.println("Graphics: " + graphics);
         System.out.println("Verhaallijn: " + verhaallijn);
@@ -87,7 +93,7 @@ public class Main {
             i++;
         }
 
-        List<String> answers = List.of(gameNaam, "Gameplay: " + gameplay, "Graphics: " + graphics, "Verhaallijn: " + verhaallijn, "Totaalscore: " + totaalScore, "Toelichting: " + toelichting);
+        List<String> answers = List.of(gameNaam, "Genre: " + genre, "Gameplay: " + gameplay, "Graphics: " + graphics, "Verhaallijn: " + verhaallijn, "Totaalscore: " + totaalScore, "Toelichting: " + toelichting);
         try {
             if (!file.createNewFile()) {
                 System.out.println("File already exists.");
@@ -107,7 +113,6 @@ public class Main {
             e.printStackTrace();
         }
         //clear the screen
-        System.out.print(" \\033[H\\033[2J");
         System.out.flush();
         scanner.next();
         MainMenu();
@@ -137,7 +142,7 @@ public class Main {
         }
         switch (input) {
             case 1:
-                //rangLijst();
+                rangLijst();
                 break;
 
             case 2:
@@ -146,7 +151,7 @@ public class Main {
                 break;
 
             case 3:
-                //uitverkoop();
+
                 break;
             case 4:
                 GenerateExitText();
@@ -159,6 +164,57 @@ public class Main {
                 MainMenu();
 
         }
+    }
+
+    //create a method to read the reviews from the file and create an average score
+    public static void readReviews(String genre) {
+        File folder = new File(Filepath);
+        File allFiles[] = folder.listFiles();
+        String gameNaam;
+        HashMap<String, Double> gameScores = new HashMap<>();
+        for (File file : allFiles) {
+            QuestionReader reader = new QuestionReader(Filepath + file.getName());
+            List<String> answers = reader.readAllLines();
+            //save the first line to a string
+            gameNaam = answers.get(0);
+            String genreGame = answers.get(2).substring(7);
+/*          int gameplay = Integer.parseInt(answers.get(1).substring(10));
+            int graphics = Integer.parseInt(answers.get(2).substring(10));
+            int verhaallijn = Integer.parseInt(answers.get(3).substring(13));*/
+            double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
+            //add the total score to the hashmap
+            //if the game already exists in the hashmap, change thescore to the average of the two scores
+            if (genre.equals("*") || genreGame.equals(genre)) {
+                if (gameScores.containsKey(gameNaam)) {
+                    double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
+                    gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
+                } else {
+                    gameScores.put(gameNaam, totaalScore);
+                }
+            }
+        }
+
+        //print the scores from highest to lowest
+        gameScores.entrySet().stream()
+                .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
+                .forEach(k -> System.out.println(k.getKey() + ": " + k.getValue()));
+    }
+
+    public static void rangLijst() {
+        //ask for which genre the user wants to see the scores
+        System.out.println("Welke genre wilt u zien? (* voor alle genres)");
+        String genre = scanner.next();
+        readReviews(genre);
+        //tell them to press enter to go back to the main menu
+        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
+        scanner.nextLine();
+        scanner.nextLine();
+        //clear the screen
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        MainMenu();
+
+
     }
 
     /**
