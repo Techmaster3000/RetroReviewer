@@ -177,7 +177,7 @@ public class Main {
             List<String> answers = reader.readAllLines();
             //save the first line to a string
             gameNaam = answers.get(0);
-            String genreGame = answers.get(2).substring(7);
+            String genreGame = answers.get(1).substring(7);
 //          int gameplay = Integer.parseInt(answers.get(1).substring(10));
 //          int graphics = Integer.parseInt(answers.get(2).substring(10));
 //          int verhaallijn = Integer.parseInt(answers.get(3).substring(13));
