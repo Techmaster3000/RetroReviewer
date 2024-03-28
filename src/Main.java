@@ -10,9 +10,9 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     // Filepath for the reviews
     static String localDir = System.getProperty("user.dir");
-    static String Filepath = localDir + File.separator + "reviews" + File.separator;
+    static String filepath = localDir + File.separator + "reviews" + File.separator;
 
-    public static void SpaceInvader() {
+    public static void spaceInvader() {
         System.out.println("\u001B[97m          ############");
         System.out.println("     ####################");
         System.out.println("    ########################");
@@ -25,7 +25,7 @@ public class Main {
     /**
      * Generates and prints a random exit text to the console.
      */
-    public static void GenerateExitText() {
+    public static void generateExitText() {
         switch (new Random().nextInt(4) + 1) {
             case 1:
                 System.out.println("Game Over!");
@@ -84,11 +84,11 @@ public class Main {
         System.out.println("Uw totaalscore is: " + totaalScore);
         System.out.println("Toelichting: " + toelichting);
 
-        String filename = Filepath + gameNaam + " review";
+        String filename = filepath + gameNaam + " review";
         File file = new File(filename + ".txt");
         int i = 1;
         while (file.exists()) {
-            filename = Filepath + gameNaam + " review" + i;
+            filename = filepath + gameNaam + " review" + i;
             file = new File(filename + ".txt");
             i++;
         }
@@ -115,7 +115,7 @@ public class Main {
         //clear the screen
         System.out.flush();
         scanner.next();
-        MainMenu();
+        mainMenu();
 
     }
 
@@ -123,7 +123,7 @@ public class Main {
     /**
      * Displays the main menu and handles user input for navigation.
      */
-    public static void MainMenu() {
+    public static void mainMenu() {
         System.out.println("1. Zie ranglijst");
         System.out.println("2. Geef review over game");
         System.out.println("3. Ga naar uitverkoop");
@@ -138,7 +138,7 @@ public class Main {
             //clear the screen
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            MainMenu();
+            mainMenu();
         }
         switch (input) {
             case 1:
@@ -154,33 +154,33 @@ public class Main {
 
                 break;
             case 4:
-                GenerateExitText();
+                generateExitText();
                 System.exit(0);
 
                 break;
             default:
                 System.out.println("Invalid input");
                 System.out.flush();
-                MainMenu();
+                mainMenu();
 
         }
     }
 
     //create a method to read the reviews from the file and create an average score
     public static void readReviews(String genre) {
-        File folder = new File(Filepath);
+        File folder = new File(filepath);
         File allFiles[] = folder.listFiles();
         String gameNaam;
         HashMap<String, Double> gameScores = new HashMap<>();
         for (File file : allFiles) {
-            QuestionReader reader = new QuestionReader(Filepath + file.getName());
+            QuestionReader reader = new QuestionReader(filepath + file.getName());
             List<String> answers = reader.readAllLines();
             //save the first line to a string
             gameNaam = answers.get(0);
             String genreGame = answers.get(2).substring(7);
-/*          int gameplay = Integer.parseInt(answers.get(1).substring(10));
-            int graphics = Integer.parseInt(answers.get(2).substring(10));
-            int verhaallijn = Integer.parseInt(answers.get(3).substring(13));*/
+//          int gameplay = Integer.parseInt(answers.get(1).substring(10));
+//          int graphics = Integer.parseInt(answers.get(2).substring(10));
+//          int verhaallijn = Integer.parseInt(answers.get(3).substring(13));
             double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
             //add the total score to the hashmap
             //if the game already exists in the hashmap, change thescore to the average of the two scores
@@ -212,7 +212,7 @@ public class Main {
         //clear the screen
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        MainMenu();
+        mainMenu();
 
 
     }
@@ -222,7 +222,7 @@ public class Main {
      * Displays the Space Invader ASCII art and opens the main menu.
      */
     public static void main(String[] args) {
-        SpaceInvader();
-        MainMenu();
+        spaceInvader();
+        mainMenu();
     }
 }
