@@ -4,10 +4,45 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.HashMap;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import java.io.FileReader;
+class Game {
+    private String name;
+    private String genre;
+    private String platform;
+    private double price;
 
+    public Game(String name, String genre, String platform, double price) {
+        this.name = name;
+        this.genre = genre;
+        this.platform = platform;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+}
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
+    private static HashMap<String, Game> gameMap = null;
+
     // Filepath for the reviews
     static String localDir = System.getProperty("user.dir");
     static String filepath = localDir + File.separator + "reviews" + File.separator;
@@ -50,14 +85,39 @@ public class Main {
      * Asks for game name, gameplay, graphics, storyline ratings, and a review comment.
      * Writes the review to a file.
      */
-    private static void reviewKlant() {
+    //write a function that checks if a string is equal to the first part of a key in a Hashmap
+    public static boolean completeInput(String gameNaam) {
+        Boolean dupe = false;
+        Boolean found = false;
+        for (String key : gameMap.keySet()) {
 
+            if (key.startsWith(gameNaam)) {
+                if (found) {
+                    dupe = true;
+                    return false;
+                }
+                else {
+                    found = true;
+                }
+            }
+        }
+        return found;
+    }
+
+    private static void reviewKlant() {
         System.out.println("Geef de naam van de game");
         String gameNaam = scanner.nextLine();
+        gameNaam = gameNaam.replaceAll(":", " -");
+        boolean gameExists = completeInput(gameNaam);
+        while (!gameExists) {
+            System.out.println("Deze game bestaat niet, probeer het opnieuw");
+            scanner.nextLine();
+            gameNaam = scanner.nextLine();
+            gameNaam = gameNaam.replaceAll(":", " -");
+            gameExists = completeInput(gameNaam);
+        }
 
-        //ask for the genre
-        System.out.println("Geef het genre van de game: ");
-        String genre = scanner.nextLine();
+        String genre = gameMap.get(gameNaam).getGenre();
 
         System.out.println("Beoordeel de gameplay van 1 tot 10: ");
         int gameplay = scanner.nextInt();
@@ -216,6 +276,45 @@ public class Main {
 
 
     }
+    //create a method that reads a JSON file and prints the contents to the console
+    public static void readJSON(String filename) {
+        JSONParser parser = new JSONParser();
+        JSONArray games = null;
+
+        try {
+            Object obj = parser.parse(new FileReader(filename));
+            if (obj instanceof JSONObject) {
+                JSONObject jsonObject = (JSONObject) obj;
+                games = (JSONArray) jsonObject.get("games");
+                // process games array
+            } else if (obj instanceof JSONArray) {
+                games = (JSONArray) obj;
+                // process games array
+            } else {
+                //terminate the program\
+                throw new Exception("Invalid JSON file");
+
+
+            }
+            gameMap = new HashMap<>();
+            for (Object game : games) {
+                JSONObject gameObj = (JSONObject) game;
+                String name = (String) gameObj.get("name");
+                String genre = (String) gameObj.get("genre");
+                String platform = (String) gameObj.get("platform");
+                double price = Double.parseDouble((String) gameObj.get("price"));
+                Game tempGame = new Game(name, genre, platform, price);
+                gameMap.put(name, tempGame);
+//                System.out.println("Name: " + name);
+//                System.out.println("Genre: " + genre);
+//                System.out.println("Platform: " + platform);
+//                System.out.println("Price: " + price);
+//                System.out.println();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Main method for the application.
@@ -223,6 +322,7 @@ public class Main {
      */
     public static void main(String[] args) {
         spaceInvader();
+        readJSON("GamesDB.json");
         mainMenu();
     }
 }
