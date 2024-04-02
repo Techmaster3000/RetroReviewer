@@ -1,37 +1,25 @@
-import java.io.File;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.ArrayList;
-
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import java.io.File;
 import java.io.FileReader;
-
-class SearchException extends Exception {
-    public SearchException() {
-    }
-
-    public SearchException(String message) {
-        super(message);
-    }
-}
+import java.util.*;
 
 class Game {
+    public Boolean onSale;
     private String name;
     private String genre;
     private String platform;
     private double price;
+    private int korting;
 
     public Game(String name, String genre, String platform, double price) {
         this.name = name;
         this.genre = genre;
         this.platform = platform;
         this.price = price;
+        this.onSale = false;
+        this.korting = 0;
     }
 
     public String getName() {
@@ -46,8 +34,12 @@ class Game {
         return platform;
     }
 
-    public double getPrice() {
+    public double getBasePrice() {
         return price;
+    }
+
+    public double getNewPrice() {
+        return price - (price * korting / 100);
     }
 
 }
@@ -55,12 +47,9 @@ class Game {
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
-    private static HashMap<String, Game> gameMap = null;
-
     // Filepath for the reviews
-    static String localDir = System.getProperty("user.dir");
-    static String filepath = localDir + File.separator + "reviews" + File.separator;
-
+    static String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
+    private static HashMap<String, Game> gameMap = null;
 
     public static void spaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -76,7 +65,7 @@ public class Main {
      * Generates and prints a random exit text to the console.
      */
     public static void generateExitText() {
-        switch (new Random().nextInt(4) + 1) {
+        switch (new Random().nextInt(5) + 1) {
             case 1:
                 System.out.println("Game Over!");
                 break;
@@ -89,19 +78,40 @@ public class Main {
             case 4:
                 System.out.println("\"Sayonara, Shadow the Hedgehog!\"");
                 break;
+            case 5:
+                System.out.println("\"It's dangerous to go alone! Take this.\"");
+                break;
             default:
                 System.out.println("Bye Bye!");
+
 
         }
     }
 
-    /**
-     * Handles the review process from the customer.
-     * Asks for game name, gameplay, graphics, storyline ratings, and a review comment.
-     * Writes the review to a file.
-     */
-    //write a function that checks if a string is equal to the first part of a single key in the hashmap and then returns the key, returns false if multiple keys or none are found
-    public static String completeInput(String input) {
+    public static String resolveMultipleResults(ArrayList<String> multipleGames) {
+        System.out.println("Meerdere games gevonden, kies de juiste game: ");
+        for (String game : multipleGames) {
+            System.out.println((multipleGames.indexOf(game) + 1) + ". " + game);
+        }
+        System.out.println((multipleGames.size() + 1) + ". Geen van bovenstaande");
+
+        while (true) {
+            try {
+                int choice = scanner.nextInt();
+                if (choice > 0 && choice <= multipleGames.size()) {
+                    return multipleGames.get(choice - 1);
+                } else if (choice == multipleGames.size() + 1) {
+                    return "other*";
+                } else {
+                    System.out.println("Ongeldige keuze, probeer het opnieuw");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Ongeldige keuze, probeer het opnieuw");
+            }
+        }
+    }
+
+    public static String gameSearch(String input) {
         String gameName = null;
         ArrayList<String> multipleGames = new ArrayList<>();
 
@@ -115,36 +125,39 @@ public class Main {
             }
         }
         if (multipleGames.size() > 1) {
-            System.out.println("Meerdere games gevonden, kies de juiste game: ");
-            for (String game : multipleGames) {
-                System.out.println((multipleGames.indexOf(game) + 1) + ". " + game);
-            }
-            System.out.println((multipleGames.size() + 1) + ". Geen van bovenstaande");
+            return resolveMultipleResults(multipleGames);
 
 
-
+        } else if (multipleGames.size() == 1) {
+            //ask for confirmation
+            System.out.println("Bedoelde u: " + gameName + "? (y/n)");
             while (true) {
-                try {
-                    int choice = scanner.nextInt();
-                    if (choice > 0 && choice <= multipleGames.size()) {
-                        return multipleGames.get(choice - 1);
-                    } else if (choice == multipleGames.size() + 1) {
-                        return "other*";
-                    }
-                    else {
-                        System.out.println("Ongeldige keuze, probeer het opnieuw");
-                    }
-                } catch (InputMismatchException e) {
+                String choice = scanner.next();
+                if (choice.equals("y")) {
+                    return gameName;
+                } else if (choice.equals("n")) {
+                    return "other*";
+                } else {
                     System.out.println("Ongeldige keuze, probeer het opnieuw");
                 }
             }
-
-
         }
         return gameName;
     }
 
-    private static void reviewKlant() {
+    public static File reviewFile(String gameNaam, String filename) {
+
+        File file = new File(filename + ".txt");
+        int i = 1;
+        while (file.exists()) {
+            filename = filepath + gameNaam + " review" + i;
+            file = new File(filename + ".txt");
+            i++;
+        }
+        return file;
+    }
+
+    private static void writeReview() {
 
         String gameNaam = null;
         Boolean found = false;
@@ -157,7 +170,7 @@ public class Main {
                 gameNaam = scanner.nextLine();
             }
             gameNaam = gameNaam.replaceAll(":", " -");
-            String gameSearch = completeInput(gameNaam);
+            String gameSearch = gameSearch(gameNaam);
             if (gameSearch == null) {
                 System.out.println("Geen game gevonden, probeer het opnieuw");
             } else if (gameSearch.equals("other*")) {
@@ -196,15 +209,8 @@ public class Main {
         System.out.println("Verhaallijn: " + verhaallijn);
         System.out.println("Uw totaalscore is: " + totaalScore);
         System.out.println("Toelichting: " + toelichting);
-
         String filename = filepath + gameNaam + " review";
-        File file = new File(filename + ".txt");
-        int i = 1;
-        while (file.exists()) {
-            filename = filepath + gameNaam + " review" + i;
-            file = new File(filename + ".txt");
-            i++;
-        }
+        File file = reviewFile(gameNaam, filename);
 
         List<String> answers = List.of(gameNaam, "Genre: " + genre, "Gameplay: " + gameplay, "Graphics: " + graphics, "Verhaallijn: " + verhaallijn, "Totaalscore: " + totaalScore, "Toelichting: " + toelichting);
         try {
@@ -231,13 +237,11 @@ public class Main {
 
     }
 
-
     public static void mainMenu() {
         System.out.println("1. Zie ranglijst");
         System.out.println("2. Geef review over game");
         System.out.println("3. Ga naar uitverkoop");
         System.out.println("4. Exit");
-        //handle input mismatch exception
         int input = 0;
         try {
             input = scanner.nextInt();
@@ -256,7 +260,7 @@ public class Main {
 
             case 2:
                 scanner.nextLine();
-                reviewKlant();
+                writeReview();
                 break;
 
             case 3:
@@ -303,10 +307,17 @@ public class Main {
             return;
         }
 
-        //print the scores from highest to lowest
+        //print the scores from highest to lowest, print those with the same score in alphabetical order
         gameScores.entrySet().stream()
-                .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
-                .forEach(k -> System.out.println(k.getKey() + ": " + k.getValue()));
+                .sorted((k1, k2) -> {
+                    int compare = k2.getValue().compareTo(k1.getValue());
+                    if (compare == 0) {
+                        return k1.getKey().compareTo(k2.getKey());
+                    } else {
+                        return compare;
+                    }
+                })
+                .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
     }
 
     public static void rangLijst() {
@@ -365,5 +376,17 @@ public class Main {
         spaceInvader();
         readJSON("GamesDB.json");
         mainMenu();
+    }
+
+    public Boolean yesOrNo(String input) {
+        while (true) {
+            if (input.equals("y")) {
+                return true;
+            } else if (input.equals("n")) {
+                return false;
+            } else {
+                System.out.println("Ongeldige keuze, probeer het opnieuw");
+            }
+        }
     }
 }
