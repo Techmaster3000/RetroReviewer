@@ -1,16 +1,7 @@
 import java.util.Scanner;
 
-class Main {
 
-    public static void SpaceInvader() {
-        System.out.println("                    ############");
-        System.out.println("                ####################");
-        System.out.println("              ########################");
-        System.out.println("            ####  ####  ####  ####  ####");
-        System.out.println("          ################################");
-        System.out.println("              ######    ####    ######");
-        System.out.println("                ##                ##");
-    }
+class Main {
 
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
@@ -78,6 +69,33 @@ class Main {
         System.out.println("De review is aangemaakt van de game: " + gameNaam);
         System.out.println("Uw totaalscore is: " + totaalScore);
 
-
+    private static final Scanner scanner = new Scanner(System.in);
+    public static void SpaceInvader() {
+        System.out.println("\u001B[97m          ############");
+        System.out.println("     ####################");
+        System.out.println("    ########################");
+        System.out.println("  ####  ####  ####  ####  ####");
+        System.out.println("################################");
+        System.out.println("    ######    ####    ######");
+        System.out.println("      ##                ##\n\u001B[32m");
     }
-}
+
+    public static void GenerateExitText() {
+        switch(new Random().nextInt(4) + 1) {
+            case 1:
+                System.out.println("Game Over!");
+                break;
+            case 2:
+                System.out.println("\"Talk about a low-budget flight! No food or movies? I'm outta here!\"");
+                break;
+            case 3:
+                System.out.println("\"Snake? Snaaaaaaake!\"");
+                break;
+            case 4:
+                System.out.println("\"Sayonara, Shadow the Hedgehog!\"");
+                break;
+            default:
+                System.out.println("Bye Bye!");
+
+        }
+    }
