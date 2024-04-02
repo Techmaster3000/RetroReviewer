@@ -63,3 +63,7 @@ Q.idea/sonarlint/securityhotspotstore/b/b/bb93b8972a837427eea5adb15e2dbc9f77aa56
 Q.idea/sonarlint/securityhotspotstore/6/9/695e7f3483f647d2f972603f1fdf474679769b30,9\b\9bde4dfe36415ba8585a8323c43b38803f8b450b
 Å
 Q.idea/sonarlint/securityhotspotstore/6/c/6c9ceb9be5ef8a623319f0313075c38e71b6d575,f\6\f6c7cbb08c070f9a7d3beeda19522094304cd56e
+l
+<reviews/Xenosaga Episode I - Der Wille zur Macht review1.txt,2\d\2d3ec66c25c93d80f6aa02e0ef67bf62611d67dd
+l
+<reviews/Xenosaga Episode I - Der Wille zur Macht review2.txt,e\b\ebe46b94f2df87ef0c8893e85883b0ec4ce4f685

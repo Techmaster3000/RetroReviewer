@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -102,42 +103,68 @@ public class Main {
     //write a function that checks if a string is equal to the first part of a single key in the hashmap and then returns the key, returns false if multiple keys or none are found
     public static String completeInput(String input) {
         String gameName = null;
+        ArrayList<String> multipleGames = new ArrayList<>();
+
         for (String key : gameMap.keySet()) {
             if (key.startsWith(input)) {
-                if (gameName != null) {
-                    return "multiple";
-                }
+                multipleGames.add(key);
                 gameName = key;
             }
             if (key.equals(input)) {
                 return key;
             }
         }
+        if (multipleGames.size() > 1) {
+            System.out.println("Meerdere games gevonden, kies de juiste game: ");
+            for (String game : multipleGames) {
+                System.out.println((multipleGames.indexOf(game) + 1) + ". " + game);
+            }
+            System.out.println((multipleGames.size() + 1) + ". Geen van bovenstaande");
+
+
+
+            while (true) {
+                try {
+                    int choice = scanner.nextInt();
+                    if (choice > 0 && choice <= multipleGames.size()) {
+                        return multipleGames.get(choice - 1);
+                    } else if (choice == multipleGames.size() + 1) {
+                        return "other*";
+                    }
+                    else {
+                        System.out.println("Ongeldige keuze, probeer het opnieuw");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Ongeldige keuze, probeer het opnieuw");
+                }
+            }
+
+
+        }
         return gameName;
     }
 
     private static void reviewKlant() {
-        System.out.println("Geef de naam van de game");
+
         String gameNaam = null;
         Boolean found = false;
         while (!found) {
+            System.out.println("Geef de naam van de game");
+            //handle empty input
+
             gameNaam = scanner.nextLine();
+            while (gameNaam.isEmpty()) {
+                gameNaam = scanner.nextLine();
+            }
             gameNaam = gameNaam.replaceAll(":", " -");
             String gameSearch = completeInput(gameNaam);
             if (gameSearch == null) {
                 System.out.println("Geen game gevonden, probeer het opnieuw");
-            }
-            else if (gameSearch.equals("multiple")) {
-                gameNaam += " ";
-                gameSearch = completeInput(gameNaam);
-                if (gameSearch.equals("multiple")) {
-                    System.out.println("Meerdere games gevonden. Typ de volledige naam.");
-                } else {
-                    gameNaam = gameMap.get(gameSearch).getName();
-                    found = true;
-                }
-            }
-            else {
+            } else if (gameSearch.equals("other*")) {
+                found = false;
+                scanner.nextLine();
+
+            } else {
                 gameNaam = gameMap.get(gameSearch).getName();
                 found = true;
             }
@@ -158,6 +185,7 @@ public class Main {
         while (!scanner.hasNext("#")) {
             toelichting.append(scanner.nextLine() + "\n");
         }
+        toelichting = new StringBuilder(toelichting.toString().replace("#", ""));
 
         double totaalScore = ((gameplay + graphics + verhaallijn) / 3);
 
@@ -190,7 +218,6 @@ public class Main {
         Write write = new Write(filename + ".txt");
         write.writeAllLines(answers);
         System.out.println("Bedankt voor uw review!");
-        scanner.reset();
         //delay 2 seconds
         try {
             Thread.sleep(2000);
@@ -205,9 +232,6 @@ public class Main {
     }
 
 
-    /**
-     * Displays the main menu and handles user input for navigation.
-     */
     public static void mainMenu() {
         System.out.println("1. Zie ranglijst");
         System.out.println("2. Geef review over game");
@@ -263,12 +287,8 @@ public class Main {
             //save the first line to a string
             gameNaam = answers.get(0);
             String genreGame = answers.get(1).substring(7);
-//          int gameplay = Integer.parseInt(answers.get(1).substring(10));
-//          int graphics = Integer.parseInt(answers.get(2).substring(10));
-//          int verhaallijn = Integer.parseInt(answers.get(3).substring(13));
+
             double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
-            //add the total score to the hashmap
-            //if the game already exists in the hashmap, change thescore to the average of the two scores
             if (genre.equals("*") || genreGame.equals(genre)) {
                 if (gameScores.containsKey(gameNaam)) {
                     double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
@@ -277,6 +297,10 @@ public class Main {
                     gameScores.put(gameNaam, totaalScore);
                 }
             }
+        }
+        if (gameScores.isEmpty()) {
+            System.out.println("Geen reviews gevonden voor dit genre");
+            return;
         }
 
         //print the scores from highest to lowest
@@ -331,21 +355,12 @@ public class Main {
                 double price = Double.parseDouble((String) gameObj.get("price"));
                 Game tempGame = new Game(name, genre, platform, price);
                 gameMap.put(name, tempGame);
-//                System.out.println("Name: " + name);
-//                System.out.println("Genre: " + genre);
-//                System.out.println("Platform: " + platform);
-//                System.out.println("Price: " + price);
-//                System.out.println();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * Main method for the application.
-     * Displays the Space Invader ASCII art and opens the main menu.
-     */
     public static void main(String[] args) {
         spaceInvader();
         readJSON("GamesDB.json");
