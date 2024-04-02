@@ -4,10 +4,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.HashMap;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+
 import java.io.FileReader;
+
+class SearchException extends Exception {
+    public SearchException() {
+    }
+
+    public SearchException(String message) {
+        super(message);
+    }
+}
+
 class Game {
     private String name;
     private String genre;
@@ -38,6 +50,7 @@ class Game {
     }
 
 }
+
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
@@ -46,6 +59,7 @@ public class Main {
     // Filepath for the reviews
     static String localDir = System.getProperty("user.dir");
     static String filepath = localDir + File.separator + "reviews" + File.separator;
+
 
     public static void spaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -85,38 +99,49 @@ public class Main {
      * Asks for game name, gameplay, graphics, storyline ratings, and a review comment.
      * Writes the review to a file.
      */
-    //write a function that checks if a string is equal to the first part of a key in a Hashmap
-    public static boolean completeInput(String gameNaam) {
-        Boolean dupe = false;
-        Boolean found = false;
+    //write a function that checks if a string is equal to the first part of a single key in the hashmap and then returns the key, returns false if multiple keys or none are found
+    public static String completeInput(String input) {
+        String gameName = null;
         for (String key : gameMap.keySet()) {
-
-            if (key.startsWith(gameNaam)) {
-                if (found) {
-                    dupe = true;
-                    return false;
+            if (key.startsWith(input)) {
+                if (gameName != null) {
+                    return "multiple";
                 }
-                else {
-                    found = true;
-                }
+                gameName = key;
+            }
+            if (key.equals(input)) {
+                return key;
             }
         }
-        return found;
+        return gameName;
     }
 
     private static void reviewKlant() {
         System.out.println("Geef de naam van de game");
-        String gameNaam = scanner.nextLine();
-        gameNaam = gameNaam.replaceAll(":", " -");
-        boolean gameExists = completeInput(gameNaam);
-        while (!gameExists) {
-            System.out.println("Deze game bestaat niet, probeer het opnieuw");
-            scanner.nextLine();
+        String gameNaam = null;
+        Boolean found = false;
+        while (!found) {
             gameNaam = scanner.nextLine();
             gameNaam = gameNaam.replaceAll(":", " -");
-            gameExists = completeInput(gameNaam);
+            String gameSearch = completeInput(gameNaam);
+            if (gameSearch == null) {
+                System.out.println("Geen game gevonden, probeer het opnieuw");
+            }
+            else if (gameSearch.equals("multiple")) {
+                gameNaam += " ";
+                gameSearch = completeInput(gameNaam);
+                if (gameSearch.equals("multiple")) {
+                    System.out.println("Meerdere games gevonden. Typ de volledige naam.");
+                } else {
+                    gameNaam = gameMap.get(gameSearch).getName();
+                    found = true;
+                }
+            }
+            else {
+                gameNaam = gameMap.get(gameSearch).getName();
+                found = true;
+            }
         }
-
         String genre = gameMap.get(gameNaam).getGenre();
 
         System.out.println("Beoordeel de gameplay van 1 tot 10: ");
@@ -276,6 +301,7 @@ public class Main {
 
 
     }
+
     //create a method that reads a JSON file and prints the contents to the console
     public static void readJSON(String filename) {
         JSONParser parser = new JSONParser();

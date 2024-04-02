@@ -84,7 +84,7 @@
         {"name":"Chrono Trigger", "genre":"RPG", "platform":"SNES", "price":"4.99"},
         {"name":"Secret of Mana", "genre":"Action RPG", "platform":"SNES", "price":"4.99"},
         {"name":"EarthBound", "genre":"RPG", "platform":"SNES", "price":"4.99"},
-        {"name":"Super Mario RPG: Legend of the Seven Stars", "genre":"RPG", "platform":"SNES", "price":"4.99"},
+        {"name":"Super Mario RPG - Legend of the Seven Stars", "genre":"RPG", "platform":"SNES", "price":"4.99"},
         {"name":"Street Fighter II", "genre":"Fighting", "platform":"SNES", "price":"4.99"},
         {"name":"Mortal Kombat II", "genre":"Fighting", "platform":"SNES", "price":"4.99"},
         {"name":"Ninja Gaiden", "genre":"Platformer", "platform":"NES", "price":"4.99"},
