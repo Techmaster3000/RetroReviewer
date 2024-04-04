@@ -1,7 +1,17 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-
 class Main {
+
+    public static void SpaceInvader() {
+        System.out.println("                    ############");
+        System.out.println("                ####################");
+        System.out.println("              ########################");
+        System.out.println("            ####  ####  ####  ####  ####");
+        System.out.println("          ################################");
+        System.out.println("              ######    ####    ######");
+        System.out.println("                ##                ##");
+    }
 
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
@@ -18,7 +28,7 @@ class Main {
         scanner.nextLine();
 
         switch (keuze) {
-            
+
             case 1:
                 rangLijst();
                 break;
@@ -26,7 +36,7 @@ class Main {
             case 2:
                 reviewKlant();
                 break;
-          
+
             case 3:
                 uitverkoop();
                 break;
@@ -41,9 +51,24 @@ class Main {
     }
 
     private static void uitverkoop() {
+        System.out.println("Deze games zijn in de uitverkoop");
+
+
     }
 
     private static void rangLijst() {
+        InlezenBestand inlezenBestand = new InlezenBestand();
+        inlezenBestand.lezenReview();
+        ArrayList<String[]> reviews = inlezenBestand.lezenReview();
+        for (String[] s : reviews) {
+            System.out.printf("%d %s%n", Integer.valueOf(s[0]), s[1], s[2], s[3]);
+        }
+//        %s = String
+//        %d = Decimaal
+//        %.2f = Kommagetal
+
+// reverseOrder() methode
+
     }
 
     private static void reviewKlant() {
@@ -61,6 +86,9 @@ class Main {
         System.out.println("Beoordeel de verhaallijn van 1 tot 10: ");
         int verhaallijn = scanner.nextInt();
 
+        //verwijderd onzichtbare scanner line
+        scanner.nextLine();
+
         System.out.println("Geef een toelichting op de review: ");
         String toelichting = scanner.nextLine();
 
@@ -69,33 +97,11 @@ class Main {
         System.out.println("De review is aangemaakt van de game: " + gameNaam);
         System.out.println("Uw totaalscore is: " + totaalScore);
 
-    private static final Scanner scanner = new Scanner(System.in);
-    public static void SpaceInvader() {
-        System.out.println("\u001B[97m          ############");
-        System.out.println("     ####################");
-        System.out.println("    ########################");
-        System.out.println("  ####  ####  ####  ####  ####");
-        System.out.println("################################");
-        System.out.println("    ######    ####    ######");
-        System.out.println("      ##                ##\n\u001B[32m");
-    }
+        String uitkomst = "";
 
-    public static void GenerateExitText() {
-        switch(new Random().nextInt(4) + 1) {
-            case 1:
-                System.out.println("Game Over!");
-                break;
-            case 2:
-                System.out.println("\"Talk about a low-budget flight! No food or movies? I'm outta here!\"");
-                break;
-            case 3:
-                System.out.println("\"Snake? Snaaaaaaake!\"");
-                break;
-            case 4:
-                System.out.println("\"Sayonara, Shadow the Hedgehog!\"");
-                break;
-            default:
-                System.out.println("Bye Bye!");
-
-        }
+        InlezenBestand lezenbestand = new InlezenBestand();
+        int id = lezenbestand.lezenReview().size() + 1;
+        uitkomst = "\n" + id + " " + gameNaam + " " +  gameplay + " " +  graphics + " " + verhaallijn  + " " + toelichting;
+        lezenbestand.schrijvenReview(uitkomst);
     }
+}
