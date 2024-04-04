@@ -96,6 +96,7 @@ public class Main {
 //        %.2f = Kommagetal
 
 // reverseOrder() methode
+    }
       
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
@@ -315,7 +316,7 @@ public class Main {
             String genreGame = answers.get(1).substring(7);
 
             double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
-            if (genre.equals("*") || genreGame.equals(genre)) {
+            if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
                 if (gameScores.containsKey(gameNaam)) {
                     double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
                     gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
@@ -326,6 +327,10 @@ public class Main {
         }
         if (gameScores.isEmpty()) {
             System.out.println("Geen reviews gevonden voor dit genre");
+            System.out.println("Voer het genre opnieuw in:");
+            rangLijst();
+            Scanner scanner = new Scanner(System.in);
+            String newGenre = scanner.nextLine();
             return;
         }
 
@@ -386,7 +391,7 @@ public class Main {
                 String genre = (String) gameObj.get("genre");
                 String platform = (String) gameObj.get("platform");
                 double price = Double.parseDouble((String) gameObj.get("price"));
-                int korting = Integer.parseInt((String) gameObj.get("korting"));
+                int korting = Integer.parseInt((String) gameObj.get("sale"));
                 Game tempGame = new Game(name, genre, platform, price, korting);
                 gameMap.put(name, tempGame);
             }
