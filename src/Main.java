@@ -13,13 +13,13 @@ class Game {
     private double price;
     private int korting;
 
-    public Game(String name, String genre, String platform, double price) {
+    public Game(String name, String genre, String platform, double price, int korting) {
         this.name = name;
         this.genre = genre;
         this.platform = platform;
         this.price = price;
         this.onSale = false;
-        this.korting = 0;
+        this.korting = korting;
     }
 
     public String getName() {
@@ -47,9 +47,9 @@ class Game {
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
-    // Filepath for the reviews
     static String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
     private static HashMap<String, Game> gameMap = null;
+    static HashMap<String, Integer> uitverkoopGames = new HashMap<>();
 
     public static void spaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -60,10 +60,7 @@ public class Main {
         System.out.println("    ######    ####    ######");
         System.out.println("      ##                ##\n\u001B[32m");
     }
-
-    /**
-     * Generates and prints a random exit text to the console.
-     */
+    
     public static void generateExitText() {
         switch (new Random().nextInt(5) + 1) {
             case 1:
@@ -236,7 +233,20 @@ public class Main {
         mainMenu();
 
     }
-
+    public static void toonUitverkoop() {
+        System.out.println("Games in de uitverkoop:");
+        for (String gameNaam : uitverkoopGames.keySet()) {
+            System.out.println(gameNaam + " - originele prijs: " + uitverkoopGames.get(gameNaam) + " - nieuwe prijs: " + uitverkoopGames.get(gameNaam));
+        }
+        // Druk op enter om terug te gaan naar het hoofdmenu
+        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
+        scanner.nextLine();
+        scanner.nextLine();
+        // Clear the screen
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        mainMenu();
+    }
     public static void mainMenu() {
         System.out.println("1. Zie ranglijst");
         System.out.println("2. Geef review over game");
@@ -364,7 +374,8 @@ public class Main {
                 String genre = (String) gameObj.get("genre");
                 String platform = (String) gameObj.get("platform");
                 double price = Double.parseDouble((String) gameObj.get("price"));
-                Game tempGame = new Game(name, genre, platform, price);
+                int korting = Integer.parseInt((String) gameObj.get("korting"));
+                Game tempGame = new Game(name, genre, platform, price, korting);
                 gameMap.put(name, tempGame);
             }
         } catch (Exception e) {
