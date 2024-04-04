@@ -67,3 +67,9 @@ l
 <reviews/Xenosaga Episode I - Der Wille zur Macht review1.txt,2\d\2d3ec66c25c93d80f6aa02e0ef67bf62611d67dd
 l
 <reviews/Xenosaga Episode I - Der Wille zur Macht review2.txt,e\b\ebe46b94f2df87ef0c8893e85883b0ec4ce4f685
+P
+ reviews/Mario Kart DS review.txt,7\a\7a7397217ad12ada13f127e0d54c4041da68169f
+P
+ reviews/Resident Evil review.txt,2\1\21efd0b91ff4483f6081843f017f2a9e35cd2b90
+I
+reviews/Galaga review.txt,6\6\66ec8a75569934838530a94297e2502f2d5a2655
