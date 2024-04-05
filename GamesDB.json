@@ -16,7 +16,7 @@
         {"name":"Final Fantasy IV", "genre":"RPG", "platform":"SNES", "price":"4.99", "sale":"0"},
         {"name":"Final Fantasy V", "genre":"RPG", "platform":"SNES", "price":"4.99", "sale":"0"},
         {"name":"Final Fantasy VI", "genre":"RPG", "platform":"SNES", "price":"4.99", "sale":"0"},
-        {"name":"Final Fantasy VII", "genre":"RPG", "platform":"PlayStation", "price":"4.99", "sale":"0"},
+        {"name":"Final Fantasy VII", "genre":"RPG", "platform":"PlayStation", "price":"9.99", "sale":"0"},
         {"name":"Final Fantasy VIII", "genre":"RPG", "platform":"PlayStation", "price":"4.99", "sale":"0"},
         {"name":"Final Fantasy IX", "genre":"RPG", "platform":"PlayStation", "price":"4.99", "sale":"0"},
         {"name":"Final Fantasy X", "genre":"RPG", "platform":"PlayStation 2", "price":"4.99", "sale":"0"},
@@ -101,7 +101,7 @@
         {"name":"Tony Hawk's Pro Skater 2", "genre":"Sports", "platform":"PlayStation", "price":"4.99", "sale":"0"},
         {"name":"Mario Kart - Double Dash!!", "genre":"Racing", "platform":"GameCube", "price":"4.99", "sale":"0"},
         {"name":"Mario Kart DS", "genre":"Racing", "platform":"Nintendo DS", "price":"4.99", "sale":"0"},
-        {"name":"Mario Kart Wii", "genre":"Racing", "platform":"Wii", "price":"4.99", "sale":"0"},
+        {"name":"Mario Kart Wii", "genre":"Racing", "platform":"Wii", "price":"4.99", "sale":"25"},
         {"name":"Doom 64", "genre":"First Person Shooter", "platform": "Nintendo 64", "price":"5.99", "sale":"0"}
 
 
