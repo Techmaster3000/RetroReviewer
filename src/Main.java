@@ -354,14 +354,14 @@ public class Main {
         for(String game : gameMap.keySet()){
             genres.add(gameMap.get(game).getGenre());
         }
-        ArrayList<String> genreLijstt = new ArrayList<>(genres);
-        for(String genre : genreLijstt){
-            System.out.println((genreLijstt.indexOf(genre) + 1) + ": " + genre);
+        ArrayList<String> genreLijst = new ArrayList<>(genres);
+        for(String genre : genreLijst){
+            System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
         }
 
         int keuze = scanner.nextInt();
-        if(keuze > 0 && keuze <= genreLijstt.size()){
-            readReviews(genreLijstt.get(keuze - 1));
+        if(keuze > 0 && keuze <= genreLijst.size()){
+            readReviews(genreLijst.get(keuze - 1));
 
             }
 
