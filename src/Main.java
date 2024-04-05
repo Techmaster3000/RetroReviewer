@@ -357,8 +357,17 @@ public class Main {
         ArrayList<String> genreLijst = new ArrayList<>(genres);
         for(String genre : genreLijst){
             System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
+        }
+
+        int keuze = scanner.nextInt();
+        if(keuze > 0 && keuze <= genreLijst.size()){
+            readReviews(genreLijst.get(keuze - 1));
+
+            }
+
 
         }
+
 
 //        System.out.println("Welke genre wilt u zien? (* voor alle genres)");
 //        String genre = scanner.next();
@@ -373,7 +382,6 @@ public class Main {
 //        mainMenu();
 
 
-    }
 
     //create a method that reads a JSON file and prints the contents to the console
     public static void readJSON(String filename) {
