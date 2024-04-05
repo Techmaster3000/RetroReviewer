@@ -26,7 +26,6 @@ class Game {
     public String getName() {
         return name;
     }
-
     public String getGenre() {
         return genre;
     }
@@ -87,6 +86,20 @@ public class Main {
         }
     }
 
+    private static void RangLijstSafae() {
+        InlezenBestand inlezenBestand = new InlezenBestand();
+        inlezenBestand.lezenReview();
+        ArrayList<String[]> reviews = inlezenBestand.lezenReview();
+        for (String[] s : reviews) {
+            System.out.printf("%d %s%n", Integer.valueOf(s[0]), s[1], s[2], s[3]);
+        }
+//        %s = String
+//        %d = Decimaal
+//        %.2f = Kommagetal
+
+// reverseOrder() methode
+    }
+      
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
         for (String game : multipleGames) {
@@ -317,7 +330,7 @@ public class Main {
             String genreGame = answers.get(1).substring(7);
 
             double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
-            if (genre.equals("*") || genreGame.equals(genre)) {
+            if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
                 if (gameScores.containsKey(gameNaam)) {
                     double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
                     gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
@@ -328,6 +341,10 @@ public class Main {
         }
         if (gameScores.isEmpty()) {
             System.out.println("Geen reviews gevonden voor dit genre");
+            System.out.println("Voer het genre opnieuw in:");
+            rangLijst();
+            Scanner scanner = new Scanner(System.in);
+            String newGenre = scanner.nextLine();
             return;
         }
 
