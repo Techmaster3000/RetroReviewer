@@ -99,7 +99,6 @@ public class Main {
 //        %.2f = Kommagetal
 
 // reverseOrder() methode
-    }
       
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
