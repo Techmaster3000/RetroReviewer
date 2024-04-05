@@ -235,7 +235,26 @@ public class Main {
 
         Write write = new Write(filename + ".txt");
         write.writeAllLines(answers);
-        System.out.println("Bedankt voor uw review!");
+        scanner.nextLine();
+        System.out.println("Wilt u nog een enquête invullen? (y/n)");
+        String enquete = scanner.nextLine();
+        boolean loop = true;
+        while (loop) {
+            if (!enquete.equals("y") && !enquete.equals("n")) {
+                System.out.println("Ongeldige keuze, probeer het opnieuw");
+                enquete = scanner.nextLine();
+            }
+            if (enquete.equalsIgnoreCase("y")) {
+                // enquete();
+                loop = false;
+            } else if (enquete.equalsIgnoreCase("n")) {
+                System.out.println("Bedankt voor uw review!");
+                loop = false;
+            }
+        }
+        System.out.println();
+
+
         //delay 2 seconds
         try {
             Thread.sleep(2000);
@@ -244,7 +263,7 @@ public class Main {
         }
         //clear the screen
         System.out.flush();
-        scanner.next();
+//        scanner.next();
         mainMenu();
 
     }
