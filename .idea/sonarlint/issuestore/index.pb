@@ -73,3 +73,5 @@ P
  reviews/Resident Evil review.txt,2\1\21efd0b91ff4483f6081843f017f2a9e35cd2b90
 I
 reviews/Galaga review.txt,6\6\66ec8a75569934838530a94297e2502f2d5a2655
+U
+%reviews/Pokemon SoulSilver review.txt,f\e\fe24964e69506cba13965b96ef3536b19898b726

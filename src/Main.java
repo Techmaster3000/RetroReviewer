@@ -1,6 +1,7 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.*;
@@ -18,8 +19,8 @@ class Game {
         this.genre = genre;
         this.platform = platform;
         this.price = price;
-        this.onSale = false;
         this.korting = korting;
+        this.onSale = korting > 0;
     }
 
     public String getName() {
@@ -37,8 +38,9 @@ class Game {
         return price;
     }
 
+    // rond de nieuwe prijs af op 2 decimalen
     public double getNewPrice() {
-        return price - (price * korting / 100);
+        return Math.round((price - (price * korting / 100)) * 100.0) / 100.0;
     }
 
 }
@@ -46,9 +48,9 @@ class Game {
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
-    static String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
+    private static String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
+    private static HashMap<String, Integer> uitverkoopGames = new HashMap<>();
     private static HashMap<String, Game> gameMap = null;
-    static HashMap<String, Integer> uitverkoopGames = new HashMap<>();
 
     public static void spaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -59,7 +61,7 @@ public class Main {
         System.out.println("    ######    ####    ######");
         System.out.println("      ##                ##\n\u001B[32m");
     }
-    
+
     public static void generateExitText() {
         switch (new Random().nextInt(5) + 1) {
             case 1:
@@ -97,6 +99,7 @@ public class Main {
 //        %.2f = Kommagetal
 
 // reverseOrder() methode
+    }
       
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
@@ -246,10 +249,14 @@ public class Main {
         mainMenu();
 
     }
+
     public static void toonUitverkoop() {
         System.out.println("Games in de uitverkoop:");
-        for (String gameNaam : uitverkoopGames.keySet()) {
-            System.out.println(gameNaam + " - originele prijs: " + uitverkoopGames.get(gameNaam) + " - nieuwe prijs: " + uitverkoopGames.get(gameNaam));
+        for (String gameNaam : gameMap.keySet()) {
+            if (gameMap.get(gameNaam).onSale) {
+                System.out.println(gameNaam + " - originele prijs: " + gameMap.get(gameNaam).getBasePrice() + " - nieuwe prijs: " + gameMap.get(gameNaam).getNewPrice());
+                uitverkoopGames.put(gameNaam, (int) gameMap.get(gameNaam).getNewPrice());
+            }
         }
         // Druk op enter om terug te gaan naar het hoofdmenu
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
@@ -260,11 +267,18 @@ public class Main {
         System.out.flush();
         mainMenu();
     }
+
+    private static void geefKorting() {
+
+
+    }
+
     public static void mainMenu() {
         System.out.println("1. Zie ranglijst");
         System.out.println("2. Geef review over game");
         System.out.println("3. Ga naar uitverkoop");
-        System.out.println("4. Exit");
+        System.out.println("4. Korting geven");
+        System.out.println("5. Exit");
         int input = 0;
         try {
             input = scanner.nextInt();
@@ -287,12 +301,13 @@ public class Main {
                 break;
 
             case 3:
-
+                toonUitverkoop();
                 break;
             case 4:
+                geefKorting();
+            case 5:
                 generateExitText();
                 System.exit(0);
-
                 break;
             default:
                 System.out.println("Invalid input");
@@ -316,7 +331,7 @@ public class Main {
             String genreGame = answers.get(1).substring(7);
 
             double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
-            if (genre.equals("*") || genreGame.equals(genre)) {
+            if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
                 if (gameScores.containsKey(gameNaam)) {
                     double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
                     gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
@@ -327,6 +342,10 @@ public class Main {
         }
         if (gameScores.isEmpty()) {
             System.out.println("Geen reviews gevonden voor dit genre");
+            System.out.println("Voer het genre opnieuw in:");
+            rangLijst();
+            Scanner scanner = new Scanner(System.in);
+            String newGenre = scanner.nextLine();
             return;
         }
 
@@ -387,7 +406,7 @@ public class Main {
                 String genre = (String) gameObj.get("genre");
                 String platform = (String) gameObj.get("platform");
                 double price = Double.parseDouble((String) gameObj.get("price"));
-                int korting = Integer.parseInt((String) gameObj.get("korting"));
+                int korting = Integer.parseInt((String) gameObj.get("sale"));
                 Game tempGame = new Game(name, genre, platform, price, korting);
                 gameMap.put(name, tempGame);
             }
