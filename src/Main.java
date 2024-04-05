@@ -12,7 +12,7 @@ class Game {
     private String genre;
     private String platform;
     private double price;
-    private int korting;
+    public int korting;
 
     public Game(String name, String genre, String platform, double price, int korting) {
         this.name = name;
@@ -268,8 +268,56 @@ public class Main {
     }
 
     private static void geefKorting() {
+        scanner.nextLine(); // Consume newline left-over
+        String gameNaam = null;
+        Boolean found = false;
+        while (!found) {
+            System.out.println("Geef de naam van de game waar u korting voor wilt geven");
+            //handle empty input
 
+            gameNaam = scanner.nextLine();
+            while (gameNaam.isEmpty()) {
+                gameNaam = scanner.nextLine();
+            }
+            gameNaam = gameNaam.replaceAll(":", " -");
+            String gameSearch = gameSearch(gameNaam);
+            if (gameSearch == null) {
+                System.out.println("Geen game gevonden, probeer het opnieuw");
+            } else if (gameSearch.equals("other*")) {
+                found = false;
+                scanner.nextLine();
+            } else {
+                gameNaam = gameMap.get(gameSearch).getName();
+                found = true;
+            }
+        }
+        if (gameMap.containsKey(gameNaam)) {
+            System.out.println("Voer de korting in als percentage (zonder het % teken):");
+            int korting = scanner.nextInt();
+            scanner.nextLine();
+            if (korting < 0 || korting > 100) {
+                System.out.println("Korting moet tussen 0 en 100 liggen.");
+                return;
+            }
+            Game geselecteerdeGame = gameMap.get(gameNaam);
+            geselecteerdeGame.korting = korting; // Pas korting toe
+            geselecteerdeGame.onSale = korting > 0; // Update onSale status
+//            .put("sale", korting);
 
+            System.out.println("Korting van " + korting + "% is toegepast op " + gameNaam);
+        } else {
+            System.out.println("Game niet gevonden. Zorg ervoor dat u de exacte naam invoert.");
+        }
+        System.out.println();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.flush();
+//        scanner.next();
+        mainMenu();
     }
 
     public static void mainMenu() {
@@ -326,16 +374,18 @@ public class Main {
             QuestionReader reader = new QuestionReader(filepath + file.getName());
             List<String> answers = reader.readAllLines();
             //save the first line to a string
-            gameNaam = answers.get(0);
-            String genreGame = answers.get(1).substring(7);
+            if (!answers.isEmpty()) {
+                gameNaam = answers.get(0);
+                String genreGame = answers.get(1).substring(7);
 
-            double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
-            if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
-                if (gameScores.containsKey(gameNaam)) {
-                    double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
-                    gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
-                } else {
-                    gameScores.put(gameNaam, totaalScore);
+                double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
+                if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
+                    if (gameScores.containsKey(gameNaam)) {
+                        double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
+                        gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
+                    } else {
+                        gameScores.put(gameNaam, totaalScore);
+                    }
                 }
             }
         }
