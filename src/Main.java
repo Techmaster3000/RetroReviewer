@@ -348,18 +348,29 @@ public class Main {
     }
 
     public static void rangLijst() {
-        //ask for which genre the user wants to see the scores
-        System.out.println("Welke genre wilt u zien? (* voor alle genres)");
-        String genre = scanner.next();
-        readReviews(genre);
-        //tell them to press enter to go back to the main menu
-        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
-        scanner.nextLine();
-        scanner.nextLine();
-        //clear the screen
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        mainMenu();
+
+        HashSet<String> genres = new HashSet<String>();
+
+        for(String game : gameMap.keySet()){
+            genres.add(gameMap.get(game).getGenre());
+        }
+        ArrayList<String> genreLijst = new ArrayList<>(genres);
+        for(String genre : genreLijst){
+            System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
+
+        }
+
+//        System.out.println("Welke genre wilt u zien? (* voor alle genres)");
+//        String genre = scanner.next();
+//        readReviews(genre);
+//        //tell them to press enter to go back to the main menu
+//        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
+//        scanner.nextLine();
+//        scanner.nextLine();
+//        //clear the screen
+//        System.out.print("\033[H\033[2J");
+//        System.out.flush();
+//        mainMenu();
 
 
     }
