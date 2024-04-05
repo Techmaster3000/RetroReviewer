@@ -99,7 +99,7 @@ public class Main {
 //        %.2f = Kommagetal
 
 // reverseOrder() methode
-      
+
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
         for (String game : multipleGames) {
@@ -415,35 +415,32 @@ public class Main {
 
         HashSet<String> genres = new HashSet<String>();
 
-        for(String game : gameMap.keySet()){
+        for (String game : gameMap.keySet()) {
             genres.add(gameMap.get(game).getGenre());
         }
         ArrayList<String> genreLijst = new ArrayList<>(genres);
-        for(String genre : genreLijst){
+        for (String genre : genreLijst) {
             System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
         }
 
         int keuze = scanner.nextInt();
-        if(keuze > 0 && keuze <= genreLijst.size()){
+        if (keuze > 0 && keuze <= genreLijst.size()) {
             readReviews(genreLijst.get(keuze - 1));
 
-            }
-
-
         }
+        //tell them to press enter to go back to the main menu
+        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
+        scanner.nextLine();
+        scanner.nextLine();
+        //clear the screen
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
+        mainMenu();
+
+    }
 
 
-//        System.out.println("Welke genre wilt u zien? (* voor alle genres)");
-//        String genre = scanner.next();
-//        readReviews(genre);
-//        //tell them to press enter to go back to the main menu
-//        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
-//        scanner.nextLine();
-//        scanner.nextLine();
-//        //clear the screen
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-//        mainMenu();
 
 
 
