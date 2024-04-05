@@ -86,20 +86,6 @@ public class Main {
         }
     }
 
-    private static void RangLijstSafae() {
-        InlezenBestand inlezenBestand = new InlezenBestand();
-        inlezenBestand.lezenReview();
-        ArrayList<String[]> reviews = inlezenBestand.lezenReview();
-        for (String[] s : reviews) {
-            System.out.printf("%d %s%n", Integer.valueOf(s[0]), s[1], s[2], s[3]);
-        }
-    }
-//        %s = String
-//        %d = Decimaal
-//        %.2f = Kommagetal
-
-// reverseOrder() methode
-
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
         for (String game : multipleGames) {
