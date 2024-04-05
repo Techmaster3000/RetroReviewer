@@ -86,6 +86,7 @@ public class Main {
         }
     }
 
+
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
         for (String game : multipleGames) {
