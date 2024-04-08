@@ -1,11 +1,7 @@
 Mario Kart Wii
 Genre: Racing
-Gameplay: 10
-Graphics: 8
-Verhaallijn: 1
-Totaalscore: 6.0
+Gameplay: 8
+Graphics: 9
+Verhaallijn: 7
+Totaalscore: 8.0
 Toelichting: 
-No story, 
-most iconic mario kart and for good reason.
-its an amazing racing game.
-
