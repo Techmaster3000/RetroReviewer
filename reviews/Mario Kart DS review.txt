@@ -5,5 +5,5 @@ Graphics: 10
 Verhaallijn: 10
 Totaalscore: 10.0
 Toelichting: 
-good game
+test
 
