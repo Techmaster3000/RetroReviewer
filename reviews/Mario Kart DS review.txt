@@ -1,9 +1,7 @@
 Mario Kart DS
 Genre: Racing
-Gameplay: 10
-Graphics: 10
-Verhaallijn: 10
-Totaalscore: 10.0
+Gameplay: 9
+Graphics: 7
+Verhaallijn: 6
+Totaalscore: 7.0
 Toelichting: 
-good game
-
