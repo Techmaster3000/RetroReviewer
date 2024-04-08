@@ -1,9 +1,7 @@
 Final Fantasy
 Genre: RPG
-Gameplay: 10
-Graphics: 10
-Verhaallijn: 10
-Totaalscore: 10.0
+Gameplay: 8
+Graphics: 7
+Verhaallijn: 8
+Totaalscore: 7.0
 Toelichting: 
-never played
-

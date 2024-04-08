@@ -1,6 +1,11 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.io.FileNotFoundException;
+import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.io.FileReader;
@@ -86,19 +91,6 @@ public class Main {
         }
     }
 
-    private static void RangLijstSafae() {
-        InlezenBestand inlezenBestand = new InlezenBestand();
-        inlezenBestand.lezenReview();
-        ArrayList<String[]> reviews = inlezenBestand.lezenReview();
-        for (String[] s : reviews) {
-            System.out.printf("%d %s%n", Integer.valueOf(s[0]), s[1], s[2], s[3]);
-        }
-    }
-//        %s = String
-//        %d = Decimaal
-//        %.2f = Kommagetal
-
-// reverseOrder() methode
 
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
@@ -321,6 +313,7 @@ public class Main {
             Game geselecteerdeGame = gameMap.get(gameNaam);
             geselecteerdeGame.korting = korting; // Pas korting toe
             geselecteerdeGame.onSale = korting > 0; // Update onSale status
+            updateJson();
 //            .put("sale", korting);
 
             System.out.println("Korting van " + korting + "% is toegepast op " + gameNaam);
@@ -371,6 +364,7 @@ public class Main {
                 break;
             case 4:
                 geefKorting();
+                break;
             case 5:
                 generateExitText();
                 System.exit(0);
@@ -460,8 +454,34 @@ public class Main {
     }
 
 
+    private static void updateJson() {
+        JSONArray gamesList = new JSONArray();
 
+        for (Map.Entry<String, Game> entry : gameMap.entrySet()) {
+            Game game = entry.getValue();
+            // Voor elke game, creëer een nieuw JSONObject en vul het met de game details
+            JSONObject gameDetails = new JSONObject();
+            gameDetails.put("name", game.getName());
+            gameDetails.put("genre", game.getGenre());
+            gameDetails.put("platform", game.getPlatform());
+            gameDetails.put("price", String.format("%.2f", game.getBasePrice()));
+            gameDetails.put("sale", Integer.toString(game.korting));
 
+            gamesList.add(gameDetails);
+        }
+
+        // Creëer een hoofd JSONObject dat de games lijst bevat
+        JSONObject root = new JSONObject();
+        root.put("games", gamesList);
+
+        try (FileWriter file = new FileWriter("GamesDB.json")) {
+            String content = root.toJSONString();
+            file.write(content);
+        } catch (IOException e) {
+            System.out.println("Er is een fout opgetreden bij het schrijven naar het JSON-bestand.");
+            e.printStackTrace();
+        }
+    }
 
     //create a method that reads a JSON file and prints the contents to the console
     public static void readJSON(String filename) {
@@ -489,7 +509,7 @@ public class Main {
                 String name = (String) gameObj.get("name");
                 String genre = (String) gameObj.get("genre");
                 String platform = (String) gameObj.get("platform");
-                double price = Double.parseDouble((String) gameObj.get("price"));
+                double price = Double.parseDouble(((String) gameObj.get("price")).replace(",", "."));
                 int korting = Integer.parseInt((String) gameObj.get("sale"));
                 Game tempGame = new Game(name, genre, platform, price, korting);
                 gameMap.put(name, tempGame);
