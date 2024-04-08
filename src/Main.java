@@ -2,6 +2,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.io.FileNotFoundException;
+import org.json.simple.parser.ParseException;
+
+import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 
 class Game {
@@ -10,15 +18,15 @@ class Game {
     private String genre;
     private String platform;
     private double price;
-    private int korting;
+    public int korting;
 
     public Game(String name, String genre, String platform, double price, int korting) {
         this.name = name;
         this.genre = genre;
         this.platform = platform;
         this.price = price;
-        this.onSale = false;
         this.korting = korting;
+        this.onSale = korting > 0;
     }
 
     public String getName() {
@@ -36,8 +44,9 @@ class Game {
         return price;
     }
 
+    // rond de nieuwe prijs af op 2 decimalen
     public double getNewPrice() {
-        return price - (price * korting / 100);
+        return Math.round((price - (price * korting / 100)) * 100.0) / 100.0;
     }
 
 }
@@ -157,9 +166,9 @@ class enquete {
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
-    static String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
+    private static String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
+    private static HashMap<String, Integer> uitverkoopGames = new HashMap<>();
     private static HashMap<String, Game> gameMap = null;
-    static HashMap<String, Integer> uitverkoopGames = new HashMap<>();
 
     public static void spaceInvader() {
         System.out.println("\u001B[97m          ############");
@@ -170,7 +179,7 @@ public class Main {
         System.out.println("    ######    ####    ######");
         System.out.println("      ##                ##\n\u001B[32m");
     }
-    
+
     public static void generateExitText() {
         switch (new Random().nextInt(5) + 1) {
             case 1:
@@ -195,20 +204,7 @@ public class Main {
         }
     }
 
-    private static void RangLijstSafae() {
-        InlezenBestand inlezenBestand = new InlezenBestand();
-        inlezenBestand.lezenReview();
-        ArrayList<String[]> reviews = inlezenBestand.lezenReview();
-        for (String[] s : reviews) {
-            System.out.printf("%d %s%n", Integer.valueOf(s[0]), s[1], s[2], s[3]);
-        }
-//        %s = String
-//        %d = Decimaal
-//        %.2f = Kommagetal
 
-// reverseOrder() methode
-    }
-      
     public static String resolveMultipleResults(ArrayList<String> multipleGames) {
         System.out.println("Meerdere games gevonden, kies de juiste game: ");
         for (String game : multipleGames) {
@@ -344,7 +340,26 @@ public class Main {
 
         Write write = new Write(filename + ".txt");
         write.writeAllLines(answers);
-        System.out.println("Bedankt voor uw review!");
+        scanner.nextLine();
+        System.out.println("Wilt u nog een enquête invullen? (y/n)");
+        String enquete = scanner.nextLine();
+        boolean loop = true;
+        while (loop) {
+            if (!enquete.equals("y") && !enquete.equals("n")) {
+                System.out.println("Ongeldige keuze, probeer het opnieuw");
+                enquete = scanner.nextLine();
+            }
+            if (enquete.equalsIgnoreCase("y")) {
+                // enquete();
+                loop = false;
+            } else if (enquete.equalsIgnoreCase("n")) {
+                System.out.println("Bedankt voor uw review!");
+                loop = false;
+            }
+        }
+        System.out.println();
+
+
         //delay 2 seconds
 
        enquete.Beginscherm();
@@ -358,7 +373,7 @@ public class Main {
         }
         //clear the screen
         System.out.flush();
-        scanner.next();
+//        scanner.next();
         mainMenu();
 
 
@@ -368,8 +383,11 @@ public class Main {
 
     public static void toonUitverkoop() {
         System.out.println("Games in de uitverkoop:");
-        for (String gameNaam : uitverkoopGames.keySet()) {
-            System.out.println(gameNaam + " - originele prijs: " + uitverkoopGames.get(gameNaam) + " - nieuwe prijs: " + uitverkoopGames.get(gameNaam));
+        for (String gameNaam : gameMap.keySet()) {
+            if (gameMap.get(gameNaam).onSale) {
+                System.out.println(gameNaam + " - originele prijs: " + gameMap.get(gameNaam).getBasePrice() + " - nieuwe prijs: " + gameMap.get(gameNaam).getNewPrice());
+                uitverkoopGames.put(gameNaam, (int) gameMap.get(gameNaam).getNewPrice());
+            }
         }
         // Druk op enter om terug te gaan naar het hoofdmenu
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
@@ -380,11 +398,67 @@ public class Main {
         System.out.flush();
         mainMenu();
     }
+
+    private static void geefKorting() {
+        scanner.nextLine(); // Consume newline left-over
+        String gameNaam = null;
+        Boolean found = false;
+        while (!found) {
+            System.out.println("Geef de naam van de game waar u korting voor wilt geven");
+            //handle empty input
+
+            gameNaam = scanner.nextLine();
+            while (gameNaam.isEmpty()) {
+                gameNaam = scanner.nextLine();
+            }
+            gameNaam = gameNaam.replaceAll(":", " -");
+            String gameSearch = gameSearch(gameNaam);
+            if (gameSearch == null) {
+                System.out.println("Geen game gevonden, probeer het opnieuw");
+            } else if (gameSearch.equals("other*")) {
+                found = false;
+                scanner.nextLine();
+            } else {
+                gameNaam = gameMap.get(gameSearch).getName();
+                found = true;
+            }
+        }
+        if (gameMap.containsKey(gameNaam)) {
+            System.out.println("Voer de korting in als percentage (zonder het % teken):");
+            int korting = scanner.nextInt();
+            scanner.nextLine();
+            if (korting < 0 || korting > 100) {
+                System.out.println("Korting moet tussen 0 en 100 liggen.");
+                return;
+            }
+            Game geselecteerdeGame = gameMap.get(gameNaam);
+            geselecteerdeGame.korting = korting; // Pas korting toe
+            geselecteerdeGame.onSale = korting > 0; // Update onSale status
+            updateJson();
+//            .put("sale", korting);
+
+            System.out.println("Korting van " + korting + "% is toegepast op " + gameNaam);
+        } else {
+            System.out.println("Game niet gevonden. Zorg ervoor dat u de exacte naam invoert.");
+        }
+        System.out.println();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.flush();
+//        scanner.next();
+        mainMenu();
+    }
+
     public static void mainMenu() {
         System.out.println("1. Zie ranglijst");
         System.out.println("2. Geef review over game");
         System.out.println("3. Ga naar uitverkoop");
-        System.out.println("4. Exit");
+        System.out.println("4. Korting geven");
+        System.out.println("5. Exit");
         int input = 0;
         try {
             input = scanner.nextInt();
@@ -408,12 +482,14 @@ public class Main {
                 break;
 
             case 3:
-
+                toonUitverkoop();
                 break;
             case 4:
+                geefKorting();
+                break;
+            case 5:
                 generateExitText();
                 System.exit(0);
-
                 break;
             default:
                 System.out.println("Invalid input");
@@ -433,16 +509,18 @@ public class Main {
             QuestionReader reader = new QuestionReader(filepath + file.getName());
             List<String> answers = reader.readAllLines();
             //save the first line to a string
-            gameNaam = answers.get(0);
-            String genreGame = answers.get(1).substring(7);
+            if (!answers.isEmpty()) {
+                gameNaam = answers.get(0);
+                String genreGame = answers.get(1).substring(7);
 
-            double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
-            if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
-                if (gameScores.containsKey(gameNaam)) {
-                    double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
-                    gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
-                } else {
-                    gameScores.put(gameNaam, totaalScore);
+                double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
+                if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
+                    if (gameScores.containsKey(gameNaam)) {
+                        double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
+                        gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
+                    } else {
+                        gameScores.put(gameNaam, totaalScore);
+                    }
                 }
             }
         }
@@ -469,10 +547,22 @@ public class Main {
     }
 
     public static void rangLijst() {
-        //ask for which genre the user wants to see the scores
-        System.out.println("Welke genre wilt u zien? (* voor alle genres)");
-        String genre = scanner.next();
-        readReviews(genre);
+
+        HashSet<String> genres = new HashSet<String>();
+
+        for (String game : gameMap.keySet()) {
+            genres.add(gameMap.get(game).getGenre());
+        }
+        ArrayList<String> genreLijst = new ArrayList<>(genres);
+        for (String genre : genreLijst) {
+            System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
+        }
+
+        int keuze = scanner.nextInt();
+        if (keuze > 0 && keuze <= genreLijst.size()) {
+            readReviews(genreLijst.get(keuze - 1));
+
+        }
         //tell them to press enter to go back to the main menu
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
         scanner.nextLine();
@@ -480,9 +570,39 @@ public class Main {
         //clear the screen
         System.out.print("\033[H\033[2J");
         System.out.flush();
+
         mainMenu();
 
+    }
 
+
+    private static void updateJson() {
+        JSONArray gamesList = new JSONArray();
+
+        for (Map.Entry<String, Game> entry : gameMap.entrySet()) {
+            Game game = entry.getValue();
+            // Voor elke game, creëer een nieuw JSONObject en vul het met de game details
+            JSONObject gameDetails = new JSONObject();
+            gameDetails.put("name", game.getName());
+            gameDetails.put("genre", game.getGenre());
+            gameDetails.put("platform", game.getPlatform());
+            gameDetails.put("price", String.format("%.2f", game.getBasePrice()));
+            gameDetails.put("sale", Integer.toString(game.korting));
+
+            gamesList.add(gameDetails);
+        }
+
+        // Creëer een hoofd JSONObject dat de games lijst bevat
+        JSONObject root = new JSONObject();
+        root.put("games", gamesList);
+
+        try (FileWriter file = new FileWriter("GamesDB.json")) {
+            String content = root.toJSONString();
+            file.write(content);
+        } catch (IOException e) {
+            System.out.println("Er is een fout opgetreden bij het schrijven naar het JSON-bestand.");
+            e.printStackTrace();
+        }
     }
 
     //create a method that reads a JSON file and prints the contents to the console
@@ -511,7 +631,7 @@ public class Main {
                 String name = (String) gameObj.get("name");
                 String genre = (String) gameObj.get("genre");
                 String platform = (String) gameObj.get("platform");
-                double price = Double.parseDouble((String) gameObj.get("price"));
+                double price = Double.parseDouble(((String) gameObj.get("price")).replace(",", "."));
                 int korting = Integer.parseInt((String) gameObj.get("sale"));
                 Game tempGame = new Game(name, genre, platform, price, korting);
                 gameMap.put(name, tempGame);
