@@ -480,6 +480,7 @@ public class Main {
                 return false;
             } else {
                 System.out.println("Ongeldige keuze, probeer het opnieuw");
+                input = scanner.nextLine();
             }
         }
     }

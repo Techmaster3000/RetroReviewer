@@ -5,5 +5,3 @@ Graphics: 1
 Verhaallijn: 1
 Totaalscore: 1.0
 Toelichting: 
-da first meg men
-

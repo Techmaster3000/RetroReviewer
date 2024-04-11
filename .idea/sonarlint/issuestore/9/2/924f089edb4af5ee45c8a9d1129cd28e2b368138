@@ -1,61 +1,61 @@
 
-‰	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(‹äÓ8ğÃÂåì1J$bafacfb4-8299-4d54-b966-5437e11d009f
+‰	java:S112Á"FDefine and throw a dedicated exception instead of using a generic one.(‹äÓ8ğÃÂåì1J$1be75975-d7b6-4571-81e2-cec03de1d982
 ã
-java:S6539"ŸSplit this â€œMonster Classâ€ into smaller and more specialized ones to reduce its dependencies on other classes from 21 to the maximum authorized 20 or less.(àªÅö8òÃÂåì1J$9f003245-c35c-4c86-b820-5333f09c50b6
+java:S6539"ŸSplit this â€œMonster Classâ€ into smaller and more specialized ones to reduce its dependencies on other classes from 21 to the maximum authorized 20 or less.(àªÅö8òÃÂåì1J$020aaac1-36e4-4840-87e6-f9c3d77f3ce4
 
-java:S2293ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñ´¡8óÃÂåì1J$2136ce26-27b6-4bff-b57e-17d84e5eea1b
+java:S2293ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñ´¡8óÃÂåì1J$312064f5-b4b5-4d53-9f9a-9c0da0687a8a
 ¨
-java:S1192F"eDefine a constant instead of duplicating this literal "Ongeldige keuze, probeer het opnieuw" 4 times.(¯¤‚¾8óÃÂåì1J$6dc4f913-9500-4bc3-8ab8-5932371f2922
+java:S1192F"eDefine a constant instead of duplicating this literal "Ongeldige keuze, probeer het opnieuw" 4 times.(¯¤‚¾8óÃÂåì1J$cab2957b-4aa3-457e-9089-9ba8ae5ebc64
 ’
-java:S1192Ş"NDefine a constant instead of duplicating this literal "\033[H\033[2J" 3 times.(Îœò—8óÃÂåì1J$78db2cd6-53ed-415b-9039-3555dc2d2b9a
+java:S1192Ş"NDefine a constant instead of duplicating this literal "\033[H\033[2J" 3 times.(Îœò—8óÃÂåì1J$0e1c2e46-764c-47fc-b8ce-d3e01cd9278c
 
-java:S1192D"GDefine a constant instead of duplicating this literal "other*" 4 times.(¤°»¿üÿÿÿÿ8ôÃÂåì1J$0bff2929-43d8-454c-b4e5-b2804fd0d8a0
+java:S1192D"GDefine a constant instead of duplicating this literal "other*" 4 times.(¤°»¿üÿÿÿÿ8ôÃÂåì1J$291c59c0-d688-42ad-8c16-a53d12f10f77
 µ
-java:S13197"mThe type of "multipleGames" should be an interface such as "List" rather than the implementation "ArrayList".(¿ÊÃÚùÿÿÿÿ8ôÃÂåì1J$81d0be90-8ed9-4e0e-92c6-63f07de251cf
+java:S13197"mThe type of "multipleGames" should be an interface such as "List" rather than the implementation "ArrayList".(¿ÊÃÚùÿÿÿÿ8ôÃÂåì1J$3f1811e4-3593-458f-9ee9-9c9b55e0a7a6
 q
-java:S5411€"(Use a primitive boolean expression here.(Ü´ Ëşÿÿÿÿ8÷ÃÂåì1J$fad07fdc-0145-48de-8f23-f51e288d5bea
+java:S5411€"(Use a primitive boolean expression here.(Ü´ Ëşÿÿÿÿ8÷ÃÂåì1J$06b32c76-99c9-4aa4-9f6c-2c5d88b4c394
 q
-java:S5411Ô"(Use a primitive boolean expression here.(‘ğ€Éùÿÿÿÿ8÷ÃÂåì1J$af549541-d625-4f0a-9e48-024a5634557b
+java:S5411Ô"(Use a primitive boolean expression here.(‘ğ€Éùÿÿÿÿ8÷ÃÂåì1J$dee951c3-4cc2-4caf-a560-b16ec7dadf3d
 q
-java:S5411ç"(Use a primitive boolean expression here.(Ü´ Ëşÿÿÿÿ8÷ÃÂåì1J$e9f0abae-a174-479e-950c-f9c975a5e24a
+java:S5411ç"(Use a primitive boolean expression here.(Ü´ Ëşÿÿÿÿ8÷ÃÂåì1J$3e6e7ce7-aa43-4920-b4ba-251358b5f98d
 ]
-java:S1220""Move this file to a named package.8øÃÂåì1J$b4319b68-ec0c-46a6-9a75-bbc25ac3eea4
+java:S1220""Move this file to a named package.8øÃÂåì1J$0a0a8a31-8f6e-4dc8-9b8b-8fe58748cfcd
 f
-java:S2119"Save and re-use this "Random".(£Ì«œùÿÿÿÿ8õÄÂåì1J$395e48ea-033d-4c33-ba45-f32c69445cd5
+java:S2119"Save and re-use this "Random".(£Ì«œùÿÿÿÿ8õÄÂåì1J$40ed67b2-a68a-4858-bc71-2a65c6cc38ec
 ‘
-java:S5361ˆ"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŠÙ–êÿÿÿÿÿ8úÄÂåì1J$5d8033ce-60d6-4fae-9147-2f9e9c5f445d
+java:S5361ˆ"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŠÙ–êÿÿÿÿÿ8úÄÂåì1J$2178ad25-e105-48f7-816b-64f30b04cd28
 k
-java:S2440¿"'Remove this instantiation of "Enquete".(áêª‚8ıÄÂåì1J$73220dae-6128-41c4-85e7-9a3e53d9f5b2
+java:S2440¿"'Remove this instantiation of "Enquete".(áêª‚8ıÄÂåì1J$d09382c7-7819-47e4-b65f-03dd6e9b3b3c
 y
-java:S2209À"5Change this instance-reference to a static reference.(÷ë±¨8ıÄÂåì1J$3f2b7674-bbcc-4b6a-ac92-b9fcdbedb104
+java:S2209À"5Change this instance-reference to a static reference.(÷ë±¨8ıÄÂåì1J$4ad9f7d8-53d3-4e72-8e55-b545297af6cb
 ¢
-java:S2142Ä"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ÖõÍåì1J$eb228493-13ae-4c42-83b0-a2ffce44a27a
-„	java:S125É"<This block of commented-out lines of code should be removed.(Ş¼ßúÿÿÿÿ8×õÍåì1J$a36afc49-4ab8-4eed-ac26-405c74960009
+java:S2142Ä"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ÖõÍåì1J$8fafeadf-f162-4d0c-a05a-4c86d1c4f0f5
+„	java:S125É"<This block of commented-out lines of code should be removed.(Ş¼ßúÿÿÿÿ8×õÍåì1J$33e0888a-83ff-4690-86d0-eb3cc5a1616a
 }
-java:S2864Ó"4Iterate over the "entrySet" instead of the "keySet".(ÁÈ£ûÿÿÿÿ8×õÍåì1J$ed39b7c7-ad7a-4d79-91e0-6dbb3fb4b0e0
+java:S2864Ó"4Iterate over the "entrySet" instead of the "keySet".(ÁÈ£ûÿÿÿÿ8×õÍåì1J$ddc3eef9-44fe-4ce0-9b5c-465fb320975f
 ‘
-java:S5361ï"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŠÙ–êÿÿÿÿÿ8ÙõÍåì1J$0cd6de56-2407-43a8-ab36-618597f47cdf
-	java:S125‡"<This block of commented-out lines of code should be removed.(ÏéëÃ8ÙõÍåì1J$ab5a53fe-f399-402d-aff3-74cd5cefe685
+java:S5361ï"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŠÙ–êÿÿÿÿÿ8ÙõÍåì1J$f10fb329-bd86-4c09-a4bc-bbfea0e6d7ad
+	java:S125‡"<This block of commented-out lines of code should be removed.(ÏéëÃ8ÙõÍåì1J$337dd284-217c-497a-8377-0c6dc8520529
 ¢
-java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ÚõÍåì1J$b48867f8-c00b-4519-8666-e0f2d5c05d06
-„	java:S125•"<This block of commented-out lines of code should be removed.(Ş¼ßúÿÿÿÿ8ÚõÍåì1J$9a4e4f5f-12b0-45eb-9578-1265b7f901c1
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ÚõÍåì1J$accc9e9f-d241-457c-9ea5-112c27bc9de7
+„	java:S125•"<This block of commented-out lines of code should be removed.(Ş¼ßúÿÿÿÿ8ÚõÍåì1J$70937a7f-6a7f-42b4-a388-f0eb90a522fb
 ›
-java:S3776È"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(äÚûøÿÿÿÿ8ÜõÍåì1J$0a48aae3-dca7-4eae-a0f4-44d7038856c5
+java:S3776È"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(äÚûøÿÿÿÿ8ÜõÍåì1J$3d075335-0b88-47ca-a28b-65e60993b70a
 €
-java:S1854å"<Remove this useless assignment to local variable "newGenre".(´ÏÑÌ8ÜõÍåì1J$7ac077e7-edf3-4277-84d6-76a9ae084363
+java:S1854å"<Remove this useless assignment to local variable "newGenre".(´ÏÑÌ8ÜõÍåì1J$8289cc55-506c-4f8d-b6ff-df9f7a681653
 s
-java:S1197Ê"*Move the array designators [] to the type.(úàˆ©ûÿÿÿÿ8İõÍåì1J$c8e59658-04bd-4747-a48e-e40a4d0636b6
+java:S1197Ê"*Move the array designators [] to the type.(úàˆ©ûÿÿÿÿ8İõÍåì1J$170952df-201f-4aec-b360-503addbc4275
 q
-java:S1481å"-Remove this unused "newGenre" local variable.(´ÏÑÌ8ŞõÍåì1J$ea67647e-0b66-4d5c-901c-2cd1f8c711ec
+java:S1481å"-Remove this unused "newGenre" local variable.(´ÏÑÌ8ŞõÍåì1J$2c2351ab-e4bb-4c45-91c8-7df1579c4cc8
 }
-java:S2864ú"4Iterate over the "entrySet" instead of the "keySet".(¨ˆ›ıÿÿÿÿ8àõÍåì1J$4fd4323f-77df-4678-853e-768c02aac7de
+java:S2864ú"4Iterate over the "entrySet" instead of the "keySet".(¨ˆ›ıÿÿÿÿ8àõÍåì1J$685da8f4-7f42-4b3c-b196-45db8f68dfda
 —
-java:S6201¸"NReplace this instanceof check and cast with 'instanceof JSONObject jsonObject'(û¶ˆœùÿÿÿÿ8äõÍåì1J$ea81fd6a-9a51-4ded-b0c2-6b50d6f2175a
+java:S6201¸"NReplace this instanceof check and cast with 'instanceof JSONObject jsonObject'(û¶ˆœùÿÿÿÿ8äõÍåì1J$041eebb2-0704-4ef6-a703-282c26abf18a
 
-java:S6201¼"LReplace this instanceof check and cast with 'instanceof JSONArray jsonarray'(½»¯18äõÍåì1J$884d819f-94a0-49ce-9fa1-2e6134d7f445
+java:S6201¼"LReplace this instanceof check and cast with 'instanceof JSONArray jsonarray'(½»¯18äõÍåì1J$31951416-25e8-41cb-88c2-60ba695a7d0e
 f
-java:S1128"$Remove this unused import 'java.io'.(¬›ãD8£úÂåì1J$34087bb7-6047-4664-b293-a3a196976b4c
+java:S1128"$Remove this unused import 'java.io'.(¬›ãD8£úÂåì1J$6e2ba424-c83f-4f22-97fe-23f2d1e4a9e9
 ‚
-java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8£úÂåì1J$093edcef-66d9-4be7-bff0-e2a357e8af46
+java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8£úÂåì1J$7a5db7ac-bfd5-456c-8b4a-0391d3ce25c9
 …
-java:S1128"BRemove this unused import 'org.json.simple.parser.ParseException'.(ƒÁ‡8£úÂåì1J$ba832824-a2ef-4e10-853f-ebb7e726e994
+java:S1128"BRemove this unused import 'org.json.simple.parser.ParseException'.(ƒÁ‡8£úÂåì1J$911e64a3-8321-49a7-a77e-44378cb557ae
