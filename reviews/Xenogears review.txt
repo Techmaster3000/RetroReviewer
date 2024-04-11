@@ -1,9 +1,9 @@
 Xenogears
 Genre: RPG
-Gameplay: 3
-Graphics: 3
-Verhaallijn: 3
-Totaalscore: 3.0
+Gameplay: 9
+Graphics: 9
+Verhaallijn: 9
+Totaalscore: 9.0
 Toelichting: 
-Preparing to play
+Never played
 
