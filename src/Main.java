@@ -324,7 +324,6 @@ public class Main {
         }
     }
 
-    //create a method to read the reviews from the file and create an average score
     public static void readReviews(String genre) {
         File folder = new File(filepath);
         File allFiles[] = folder.listFiles();
@@ -333,11 +332,9 @@ public class Main {
         for (File file : allFiles) {
             QuestionReader reader = new QuestionReader(filepath + file.getName());
             List<String> answers = reader.readAllLines();
-            //save the first line to a string
             if (!answers.isEmpty()) {
                 gameNaam = answers.get(0);
                 String genreGame = answers.get(1).substring(7);
-
                 double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
                 if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
                     if (gameScores.containsKey(gameNaam)) {
@@ -354,11 +351,12 @@ public class Main {
             System.out.println("Voer het genre opnieuw in:");
             rangLijst();
             Scanner scanner = new Scanner(System.in);
-            String newGenre = scanner.nextLine();
+            String nieuweGenre = scanner.nextLine();
             return;
         }
+        System.out.printf("%-50s %-40s\n", "Game Naam", "Gemiddelde score");
+        System.out.println("------------------------------------------------------------------");
 
-        //print the scores from highest to lowest, print those with the same score in alphabetical order
         gameScores.entrySet().stream()
                 .sorted((k1, k2) -> {
                     int compare = k2.getValue().compareTo(k1.getValue());
@@ -368,8 +366,62 @@ public class Main {
                         return compare;
                     }
                 })
-                .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+                .forEach(entry -> System.out.printf("%-50s %-40.2f\n", entry.getKey(), entry.getValue()));
+
+        System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
+        scanner.nextLine();
+        scanner.nextLine();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        mainMenu();
     }
+
+    //create a method to read the reviews from the file and create an average score
+//    public static void readReviews(String genre) {
+//        File folder = new File(filepath);
+//        File allFiles[] = folder.listFiles();
+//        String gameNaam;
+//        HashMap<String, Double> gameScores = new HashMap<>();
+//        for (File file : allFiles) {
+//            QuestionReader reader = new QuestionReader(filepath + file.getName());
+//            List<String> answers = reader.readAllLines();
+//            //save the first line to a string
+//            if (!answers.isEmpty()) {
+//                gameNaam = answers.get(0);
+//                String genreGame = answers.get(1).substring(7);
+//
+//                double totaalScore = Math.round(Double.parseDouble(answers.get(5).substring(12)) * 10) / 10.0;
+//                if (genre.equalsIgnoreCase("*") || genreGame.equalsIgnoreCase(genre)) {
+//                    if (gameScores.containsKey(gameNaam)) {
+//                        double newScore = (gameScores.get(gameNaam) + totaalScore) / 2;
+//                        gameScores.put(gameNaam, (double) Math.round((newScore * 10) / 10.0));
+//                    } else {
+//                        gameScores.put(gameNaam, totaalScore);
+//                    }
+//                }
+//            }
+//        }
+//        if (gameScores.isEmpty()) {
+//            System.out.println("Geen reviews gevonden voor dit genre");
+//            System.out.println("Voer het genre opnieuw in:");
+//            rangLijst();
+//            Scanner scanner = new Scanner(System.in);
+//            String newGenre = scanner.nextLine();
+//            return;
+//        }
+//
+//        //print the scores from highest to lowest, print those with the same score in alphabetical order
+//        gameScores.entrySet().stream()
+//                .sorted((k1, k2) -> {
+//                    int compare = k2.getValue().compareTo(k1.getValue());
+//                    if (compare == 0) {
+//                        return k1.getKey().compareTo(k2.getKey());
+//                    } else {
+//                        return compare;
+//                    }
+//                })
+//                .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+//    }
 
     public static void rangLijst() {
 
