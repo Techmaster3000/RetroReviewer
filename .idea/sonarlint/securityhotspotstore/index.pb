@@ -75,3 +75,7 @@ I
 reviews/Galaga review.txt,6\6\66ec8a75569934838530a94297e2502f2d5a2655
 U
 %reviews/Pokemon SoulSilver review.txt,f\e\fe24964e69506cba13965b96ef3536b19898b726
+@
+src/Enquete.java,6\b\6bbf8ff11f7031765358c47ef491499c2254987b
+=
+src/Game.java,b\8\b8792f7569afb04e93ae07d923c5005933c47d72
