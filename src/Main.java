@@ -1,11 +1,14 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+
 import org.json.simple.parser.ParseException;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.*;
@@ -202,7 +205,6 @@ public class Main {
         mainMenu();
 
 
-
     }
 
 
@@ -354,7 +356,7 @@ public class Main {
             String nieuweGenre = scanner.nextLine();
             return;
         }
-        System.out.printf("%-50s %-40s %-30s\n", "Game Naam", "Gemiddelde score" , "Prijs");
+        System.out.printf("%-50s %-40s %-30s\n", "Game Naam", "Gemiddelde score", "Prijs");
         System.out.println("--------------------------------------------------------------------------------------------------------");
 
         gameScores.entrySet().stream()
@@ -367,12 +369,20 @@ public class Main {
                     }
                 })
                 .forEach(entry -> {
-                            Game game = gameMap.get(entry.getKey());
-                            System.out.printf("%-50s %-40.2f %-30.2f\n", entry.getKey(), entry.getValue(), game.getBasePrice());
-                        });
+                    Game game = gameMap.get(entry.getKey());
+                    if (game != null) {
+                        double prijs;
+                        if (game.getNewPrice() < game.getBasePrice()) {
+                            prijs = game.getNewPrice();
+                        } else {
+                            prijs = game.getBasePrice();
+                        }
+                        System.out.printf("%-50s %-40.1f %-30.2f  \n", entry.getKey(), entry.getValue(), prijs);
+                    }
+                });
+
 
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
-        scanner.nextLine();
         scanner.nextLine();
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -437,11 +447,24 @@ public class Main {
         for (String genre : genreLijst) {
             System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
         }
+        scanner.nextLine();
+        while (true) {
+            String keuze = scanner.nextLine();
+            try {
+                if (Integer.parseInt(keuze) > 0 && Integer.parseInt(keuze) <= genreLijst.size()) {
+                    readReviews(genreLijst.get(Integer.parseInt(keuze) - 1));
+                    break;
 
-        int keuze = scanner.nextInt();
-        if (keuze > 0 && keuze <= genreLijst.size()) {
-            readReviews(genreLijst.get(keuze - 1));
+                }
+            } catch (Exception e) {
+                if (keuze.equals("*")) {
+                    readReviews(keuze);
+                    break;
 
+                } else {
+                    System.out.println("Ongeldige invoer");
+                }
+            }
         }
         //tell them to press enter to go back to the main menu
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");

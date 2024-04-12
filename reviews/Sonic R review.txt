@@ -1,0 +1,9 @@
+Sonic R
+Genre: Racing
+Gameplay: 3
+Graphics: 4
+Verhaallijn: 4
+Totaalscore: 3.0
+Toelichting: 
+Very slippery controls
+
