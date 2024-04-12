@@ -1,0 +1,7 @@
+Sonic the Hedgehog
+Genre: Platformer
+Gameplay: 8
+Graphics: 9
+Verhaallijn: 6
+Totaalscore: 7.0
+Toelichting: 

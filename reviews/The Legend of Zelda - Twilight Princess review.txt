@@ -1,0 +1,8 @@
+The Legend of Zelda - Twilight Princess
+Genre: Adventure
+Gameplay: 7
+Graphics: 8
+Verhaallijn: 5
+Totaalscore: 6.0
+Toelichting: test
+
