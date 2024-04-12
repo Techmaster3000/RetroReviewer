@@ -377,11 +377,6 @@ public class Main {
                             System.out.printf("%-50s %-40.2f %-30.2f  \n", entry.getKey(), entry.getValue(), prijs);
                         });
 
-//        for (String gameNaam : gameMap.keySet()) {
-//            if (gameMap.get(gameNaam).onSale) {
-//                System.out.println( " - nieuwe prijs: " + gameMap.get(gameNaam).getNewPrice());
-//            }
-//        }
 
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
         scanner.nextLine();
