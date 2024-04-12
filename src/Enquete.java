@@ -37,8 +37,15 @@ public class Enquete {
                 if (!line.isEmpty()) {
 
                     if (!line.equals("*") && line.substring(1, 2).equals("€")) {
-                        leesConditioneleVragen(reader, writer, prevAnswer, line);
-                        line = line.substring(0, 2) + line.substring(3);
+
+                        if(leesConditioneleVragen(reader, writer, prevAnswer, line)) {
+                            line = line.substring(0, 2) + line.substring(3);
+                        }
+                        else {
+                            line = reader.readLine();
+                            continue;
+
+                        }
                     }
                     switch (line.charAt(0)) {
                         case ']':
@@ -66,13 +73,7 @@ public class Enquete {
         //print the question without the first characters
         System.out.println(formulateQuestion(line));
         if (line.endsWith("(y/n)")) {
-            int answer = YesNoQuestion();
-            if (answer == 1) {
-                writer.write(line + " " + "Ja\n");
-            } else {
-                writer.write(line + " " + "Nee\n");
-            }
-            return answer;
+            return YesNoQuestion(writer, line);
         }
         int index = 1;
         ArrayList<String> choices = new ArrayList<>();
@@ -107,19 +108,29 @@ public class Enquete {
                 scanner.nextLine();
             }
         }
-        writer.write(toWrite + " " +choices.get(antwoord - 1));
+        writer.write(toWrite + " " + choices.get(antwoord - 1));
         writer.newLine();
+        index = antwoord;
         scanner.nextLine();
-        return index - 1;
+        return index;
     }
 
-    private static int YesNoQuestion() {
+    private static int YesNoQuestion(BufferedWriter writer, String line) {
         Boolean answer = yesOrNo(scanner.nextLine());
-        if (answer) {
-            return 1;
-        } else {
-            return 0;
+        try {
+            if (answer) {
+                writer.write(line + " " + "Ja\n");
+                return 1;
+            } else {
+                writer.write(line + " " + "Nee\n");
+                return 0;
+            }
         }
+        catch (IOException e) {
+            return -1;
+
+        }
+
 
     }
 
@@ -136,15 +147,19 @@ public class Enquete {
         writer.newLine();
     }
 
-    private static void leesConditioneleVragen(BufferedReader reader, BufferedWriter writer, int prevAnswer, String line) {
+    private static Boolean leesConditioneleVragen(BufferedReader reader, BufferedWriter writer, int prevAnswer, String line) {
         int expectedIndex = Integer.parseInt(line.substring(2, 3));
         if (prevAnswer != expectedIndex) {
             try {
+
                 reader.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
+                return false;
+            }
+            catch (IOException e) {
+                return false;
             }
         }
+        return true;
 
     }
 
@@ -152,7 +167,9 @@ public class Enquete {
     public static void Eindscherm() {
         System.out.println();
         System.out.println("Bedankt voor het invullen van de enquête!");
-        System.out.println("   (^-^)   ");
+        // make ascii art of pacman
+        System.out.println("   (^^)    ");
+        System.out.println("   (^-^)  ");
         System.out.println("  (     )  ");
     }
 
