@@ -449,11 +449,25 @@ public class Main {
         for (String genre : genreLijst) {
             System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
         }
+        scanner.nextLine();
+        while (true) {
+            String keuze = scanner.nextLine();
+            try {
+                if (Integer.parseInt(keuze) > 0 && Integer.parseInt(keuze) <= genreLijst.size()) {
+                    readReviews(genreLijst.get(Integer.parseInt(keuze) - 1));
+                    break;
 
-        int keuze = scanner.nextInt();
-        if (keuze > 0 && keuze <= genreLijst.size()) {
-            readReviews(genreLijst.get(keuze - 1));
+                }
+            } catch (Exception e) {
+                if (keuze.equals("*")) {
+                    readReviews(keuze);
+                    break;
 
+                } else {
+                    System.out.println("Ongeldige invoer");
+
+                }
+            }
         }
         //tell them to press enter to go back to the main menu
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
