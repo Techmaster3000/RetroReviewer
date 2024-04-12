@@ -1,11 +1,14 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+
 import org.json.simple.parser.ParseException;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.*;
@@ -202,7 +205,6 @@ public class Main {
         mainMenu();
 
 
-
     }
 
 
@@ -354,7 +356,7 @@ public class Main {
             String nieuweGenre = scanner.nextLine();
             return;
         }
-        System.out.printf("%-50s %-40s %-30s\n", "Game Naam", "Gemiddelde score" , "Prijs");
+        System.out.printf("%-50s %-40s %-30s\n", "Game Naam", "Gemiddelde score", "Prijs");
         System.out.println("--------------------------------------------------------------------------------------------------------");
 
         gameScores.entrySet().stream()
@@ -367,15 +369,17 @@ public class Main {
                     }
                 })
                 .forEach(entry -> {
-                            Game game = gameMap.get(entry.getKey());
-                            double prijs;
-                            if (game.getNewPrice() < game.getBasePrice()){
-                                prijs = game.getNewPrice();
-                            } else {
-                                prijs = game.getBasePrice();
-                            }
-                            System.out.printf("%-50s %-40.2f %-30.2f  \n", entry.getKey(), entry.getValue(), prijs);
-                        });
+                    Game game = gameMap.get(entry.getKey());
+                    if (game != null) {
+                        double prijs;
+                        if (game.getNewPrice() < game.getBasePrice()) {
+                            prijs = game.getNewPrice();
+                        } else {
+                            prijs = game.getBasePrice();
+                        }
+                        System.out.printf("%-50s %-40.1f %-30.2f  \n", entry.getKey(), entry.getValue(), prijs);
+                    }
+                });
 
 //        for (String gameNaam : gameMap.keySet()) {
 //            if (gameMap.get(gameNaam).onSale) {
@@ -384,7 +388,6 @@ public class Main {
 //        }
 
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
-        scanner.nextLine();
         scanner.nextLine();
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -465,7 +468,6 @@ public class Main {
 
                 } else {
                     System.out.println("Ongeldige invoer");
-
                 }
             }
         }
