@@ -354,8 +354,8 @@ public class Main {
             String nieuweGenre = scanner.nextLine();
             return;
         }
-        System.out.printf("%-50s %-40s\n", "Game Naam", "Gemiddelde score");
-        System.out.println("------------------------------------------------------------------");
+        System.out.printf("%-50s %-40s %-30s\n", "Game Naam", "Gemiddelde score" , "Prijs");
+        System.out.println("--------------------------------------------------------------------------------------------------------");
 
         gameScores.entrySet().stream()
                 .sorted((k1, k2) -> {
@@ -366,7 +366,10 @@ public class Main {
                         return compare;
                     }
                 })
-                .forEach(entry -> System.out.printf("%-50s %-40.2f\n", entry.getKey(), entry.getValue()));
+                .forEach(entry -> {
+                            Game game = gameMap.get(entry.getKey());
+                            System.out.printf("%-50s %-40.2f %-30.2f\n", entry.getKey(), entry.getValue(), game.getBasePrice());
+                        });
 
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
         scanner.nextLine();
