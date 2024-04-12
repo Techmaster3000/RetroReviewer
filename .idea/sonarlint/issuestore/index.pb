@@ -87,3 +87,41 @@ K
 reviews/Mega Man review.txt,2\f\2f2ab1e3e9099ded4391dd888e997561fda5df81
 L
 reviews/Xenogears review.txt,7\2\7273b71b59e794d2993fb89611d5d11d526af1d8
+Q
+!reviews/Super Mario 64 review.txt,a\8\a8cd93450b4802f8d816ca8aee059d3e6e07351f
+R
+"reviews/Super Mario 64 review1.txt,b\a\baf51dfc63ade98b8636f81101b85c56ddc61503
+M
+reviews/Xenogears review1.txt,d\1\d18e85ad44875504055cf393b5302451fa0e3b9c
+S
+#reviews/Sonic Adventure review1.txt,1\9\191e5180205d875096b7e6b3921ff44e83a04199
+W
+'reviews/Super Mario Sunshine review.txt,a\c\ac2d4dee19367a2610993efc04fa66ac84aa8695
+K
+reviews/Sonic R review1.txt,e\c\ecfee16a802ea9ee89d09947bf7b8e90df5c0a05
+W
+'reviews/Sonic the Hedgehog 2 review.txt,a\8\a81a6d0c2b3d746107c317a2856e7222c81d2937
+T
+$reviews/Sonic Adventure 2 review.txt,9\7\97cbd8ce5b541a49f60dbeb3267190281d1b9622
+J
+reviews/Sonic R review.txt,4\0\40765961aa12c208ea9e2a0d1eb2d054a22e05b7
+K
+reviews/Sonic CD review.txt,f\a\fa7b16d8d773fa149c53126aa8ac42723a78eaa0
+O
+reviews/Sonic Heroes review.txt,6\a\6aabdbe33a464474df6c6959020f5fce2a32d49c
+L
+reviews/Mega Man review1.txt,d\9\d9a0d3c8d4875d80cf394e377bc3fb7a91317f11
+Q
+!reviews/Mario Kart DS review1.txt,e\0\e09caa208ec73f432872641d91aae39fc9beab95
+P
+ reviews/Super Metroid review.txt,2\e\2e9abbd58341583b3a7c463038a1008edd5a723e
+E
+src/GameSearcher.java,e\1\e1a5189c05ac3416d61b486d4a7a8d6249fd87c1
+F
+src/ReviewHandler.java,6\0\60a223c22b0378f82395d6f9e0c4a3a402c16cb2
+D
+src/JSONHandler.java,2\6\263b3f1f74d0b2deaf21bac94a302b33ee75d438
+J
+src/UitverkoopSysteem.java,0\a\0aaa11490f11b063b5fd041f172bd9f542125f40
+L
+reviews/Sonic CD review1.txt,c\7\c7c34fd8b22e7c85dccc0965f229632f6e919939
