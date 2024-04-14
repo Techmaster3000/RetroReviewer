@@ -1,0 +1,13 @@
+
+	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8θίΔεν1J$08456bf6-2c19-4836-9297-cf1f0acf2b3e
+]
+java:S1220""Move this file to a named package.8κίΔεν1J$7cac69ec-bffd-4971-b70c-704c5f8962d8
+y
+java:S2696:"6Make the enclosing method "static" or remove this set.(†™ΖΫ8Ι¦Νεν1J$75eb7212-b10b-43df-a60c-758cd8197479
+o
+java:S2440=",Remove this instantiation of "GameSearcher".(¥λ£„8σίΔεν1J$b2ed19a6-c24f-426a-a5f5-1b9db140690a
+‚	java:S899A";Do something with the "boolean" value returned by "delete".(²­ϋÿÿÿÿ8τίΔεν1J$b2191403-a489-4450-8a48-2281ae980a3b
+–
+java:S4042A"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²­ϋÿÿÿÿ8τίΔεν1J$1ed11ed4-c38a-4bfb-9eda-08ba11930f66
+s
+java:S5960"+Remove this assertion from production code.(υΏΧÿÿÿÿÿ8τίΔεν1J$28aeec19-222c-472f-b086-eafe8ede9bf8

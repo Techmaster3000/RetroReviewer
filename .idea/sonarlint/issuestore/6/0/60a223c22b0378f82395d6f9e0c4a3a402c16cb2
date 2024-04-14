@@ -1,0 +1,28 @@
+
+¬
+java:S1319"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(•Ã„šşÿÿÿÿ8’Ñ¯“í1J$8f40b194-1e39-4bea-8b6b-cba6f01cc8a0
+¬
+java:S1319Q"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(¢íïşÿÿÿÿ8›Ñ„–í1J$9a62d7b2-1538-4487-ab05-80a46d1c59d5
+V
+java:S1220""Move this file to a named package.J$7793660a-8cb6-4407-8b71-b0c2814549f7
+}
+java:S1118":Add a private constructor to hide the implicit public one.(è™ÏØ8’¢¨“í1J$5ec0c485-230f-47de-be03-dec8d1b1dc81
+š
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(•Ã„šşÿÿÿÿ8”¢¨“í1J$a51c9a48-8048-4ec2-83ec-af69e7f44f34
+‚
+java:S1854,"?Remove this useless assignment to local variable "nieuweGenre".(©±™8•¢¨“í1J$be8b9e32-4203-4e30-9c93-f200498d0db1
+s
+java:S1481,"0Remove this unused "nieuweGenre" local variable.(©±™8—¢¨“í1J$ff79366e-63eb-41ff-b0ee-75abf53ece7e
+“
+java:S3457/"Q%n should be used in place of \n to produce the platform-specific line separator.(ßµâr8˜¢¨“í1J$77b1913e-8a38-4890-981a-0f09a53818d4
+”
+java:S3457D"Q%n should be used in place of \n to produce the platform-specific line separator.(´Å8š¢¨“í1J$648af6d4-0247-453f-ba93-24b7fddc59b6
+
+java:S5361]"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŠÙ–êÿÿÿÿÿ8›¢¨“í1J$22838078-ccd9-485a-9cdc-0bdc82b73626
+}
+java:S2209^"5Change this instance-reference to a static reference.(ş®–íûÿÿÿÿ8œ¢¨“í1J$86e17325-6a1a-4346-b1aa-8517403c6a4d
+k
+java:S2440”"'Remove this instantiation of "Enquete".(—Š˜Š8¢¨“í1J$4cedc117-55f1-4329-980d-14a9a9946858
+y
+java:S2209•"5Change this instance-reference to a static reference.(÷ë±¨8¢¨“í1J$05d069cc-b122-4c6b-bdcf-fe686b1809e2
+„	java:S125—"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8¢ß¼åí1J$b649b283-4cb8-48c1-bb64-095224ec4c38

@@ -1,0 +1,22 @@
+
+]
+java:S1220""Move this file to a named package.8©¤ìí1J$1bfb13ad-57ed-449a-aa48-aede7cc9dd11
+l
+java:S3010"$Remove this assignment of "scanner".(ôÀŒóøÿÿÿÿ8Ãá›åí1J$0862a513-95b6-4c74-bff1-d1d5d9b2c55f
+}
+java:S2209"5Change this instance-reference to a static reference.(ôÀŒóøÿÿÿÿ8Ãá›åí1J$e95b1cd2-584d-4d27-ad05-41b1f445e02c
+	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡º‹=8­¥ìí1J$a05fe8ec-0be0-47f9-b0e9-8d9ebea62e8f
+‹
+java:S5361""HReplace this call to "replaceAll()" by a call to the "replace()" method.(¿¹ª‡8¯¥ìí1J$68471410-9170-4902-9b8c-c08a3b28d5e8
+‹
+java:S5361#"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¯„£¢8¯¥ìí1J$49496a31-2ab7-448e-a332-141cb2fff899
+‹
+java:S5361$"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ÈúŞû8¯¥ìí1J$d8729d9b-1ae0-41d5-b514-5e48864fbb13
+š
+java:S3776)"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(œéÊğúÿÿÿÿ8°¥ìí1J$962930d5-30dd-4abe-9fe6-1a8ad66f909f
+–	java:S100ƒ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Òàã‚øÿÿÿÿ8¶¥ìí1J$1944f81c-16fa-40e4-a510-33d14f289459
+v
+java:S1172£"-Remove this unused method parameter "writer".(Á¢ÂÙûÿÿÿÿ8¸¥ìí1J$6daaed9c-5a5e-40e1-99ed-c1b8bb9d84fc
+•
+java:S2677¨"LUse or store the value returned from "readLine" instead of throwing it away.(£­—âÿÿÿÿÿ8¹¥ìí1J$d23a47e5-507c-4d6e-9eb8-724ec99811ac
+‘	java:S100´"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûû”“8¹¥ìí1J$ca1a5583-c155-4075-a539-1cf24c31fdf6

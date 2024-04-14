@@ -1,0 +1,17 @@
+
+¡
+java:S1192"eDefine a constant instead of duplicating this literal "Ongeldige keuze, probeer het opnieuw" 3 times.(¯¤‚¾J$6ec9df78-849a-437e-a9d9-4f4a095f30fa
+®
+java:S1319"mThe type of "multipleGames" should be an interface such as "List" rather than the implementation "ArrayList".(¿ÊÃÚùÿÿÿÿJ$fe632c06-2731-41c6-b905-f44abedc6aa0
+¥
+java:S1319#"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(îŸ“çşÿÿÿÿJ$41c26043-8c5c-4452-9388-eb093f6ae949
+V
+java:S1220""Move this file to a named package.J$78d53650-cee0-4c2c-92c9-35e23acf1991
+^
+java:S1118	"Hide this public constructor.(áçÅ´ÿÿÿÿÿJ$616e64cf-e5a4-4ad8-8ee1-0c108029e4bc
+e
+java:S3010
+"$Remove this assignment of "scanner".(ôÀŒóøÿÿÿÿJ$79b089cd-63c2-4755-9beb-60803842e3cf
+v
+java:S2209
+"5Change this instance-reference to a static reference.(ôÀŒóøÿÿÿÿJ$34756ef7-56e5-4c1e-b509-bdbce6bf392b

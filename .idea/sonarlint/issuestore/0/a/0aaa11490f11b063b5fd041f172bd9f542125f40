@@ -1,0 +1,18 @@
+
+¥
+java:S1319"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(İ¼•“ûÿÿÿÿJ$0eb4f41c-182d-46af-b6d5-3ee0bd36b77a
+§
+java:S1319"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(Îğùö8®¦Œ”í1J$ae06bd54-5867-4c11-a6f6-1c21766d002a
+V
+java:S1220""Move this file to a named package.J$db2a7fc1-a6c5-4141-9c8f-59bc2146fd98
+{
+java:S1118":Add a private constructor to hide the implicit public one.(ãÿñ²ûÿÿÿÿJ$d977c0ad-9b10-4c23-b0c5-c67084b892ec
+u
+java:S2864"4Iterate over the "entrySet" instead of the "keySet".(ÁÈ£ûÿÿÿÿJ$ded8ca78-6e21-4140-a487-ad564c7908df
+‰
+java:S5361$"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ŠÙ–êÿÿÿÿÿJ$524e0636-875a-424d-87cd-09ddddbf9385
+}
+java:S2209;"5Change this instance-reference to a static reference.(Ñ§µıÿÿÿÿ8±¨ñ•í1J$3359ec6b-85bb-4e05-837a-cb78e22f53b6
+w	java:S125<"<This block of commented-out lines of code should be removed.(ÏéëÃJ$4ac8bfda-8b0e-4e8d-8f67-1c2918b4a2f9
+š
+java:S2142E"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€J$4cd064f0-aed9-426a-b473-d093f03bc7ab

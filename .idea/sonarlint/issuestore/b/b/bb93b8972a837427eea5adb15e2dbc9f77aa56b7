@@ -1,17 +1,0 @@
-
-_
-java:S1643"Use a StringBuilder instead.(¦üã8±ãŒÍé1J$3fdd6e0a-52c9-4202-b6cc-9cafac82c2ee
-]
-java:S1220""Move this file to a named package.8³ãŒÍé1J$c78f28c4-dbe5-4a0e-8c9d-fa38f8873746
-”
-java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(ˆ¤Î¥øÿÿÿÿ8¿ãŒÍé1J$8a409991-993b-40b0-a7db-5557c1e29b63
-‚
-java:S1118":Add a private constructor to hide the implicit public one.(ñéÛüùÿÿÿÿ8ÂãŒÍé1J$920069d0-4be4-433a-b5f3-7e1787dfd5d2
-s
-java:S1128"0Remove this unused import 'java.io.InputStream'.(¹»º8¡ÑÉÍé1J$e0ec18ba-ea99-4a74-9439-de44b00b0866
-y
-java:S1128"6Remove this unused import 'java.io.InputStreamReader'.(ãˆÎÉ8¡ÑÉÍé1J$5735038b-5501-4cc5-86ef-fdd9b651fd2e
-q
-java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8¡ÑÉÍé1J$83373a84-c61f-43c6-82c3-fbdfbb0e3acc
-o
-java:S1128",Remove this unused import 'org.json.simple'.(ûé÷¨8‡Å³Íé1J$11e1202c-dc93-411b-9246-8786f84b5cd0
