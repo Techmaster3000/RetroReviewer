@@ -69,7 +69,6 @@ public class JSONHandler {
                 games = (JSONArray) obj;
                 // process games array
             } else {
-                //terminate the program\
                 throw new Exception("Invalid JSON file");
 
 

@@ -1,0 +1,20 @@
+
+ˆ	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(‹äÓ8»Ş“í1J$d925872f-13d2-4b5f-be68-f857921c6ba1
+§
+java:S1319"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(¶Æ½Ø8»åŞ“í1J$ca549f64-2410-4db4-93e2-f968ca3a6606
+°
+java:S1319;"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(§ŸÂü8ÔÑò“í1J$70b988f1-7824-40d7-87f9-f122122b0113
+§
+java:S1319;"dThe type of "gameMap" should be an interface such as "Map" rather than the implementation "HashMap".(§ŸÂü8šœø“í1J$b15bd21b-a7e8-4aca-88c4-2aee024ee20b
+_
+java:S1643"Use a StringBuilder instead.(¦üã8±ãŒÍé1J$4840d1d2-e636-4c1b-94a7-84da85207051
+]
+java:S1220""Move this file to a named package.8³ãŒÍé1J$98873e4e-15e9-4c44-98e8-ce67dfe7952f
+”
+java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(ˆ¤Î¥øÿÿÿÿ8¿ãŒÍé1J$122ddffb-e1d1-4f0b-a6e3-77c916810bd4
+‚
+java:S1118	":Add a private constructor to hide the implicit public one.(Î“ôùÿÿÿÿ8ÂãŒÍé1J$d5f3e972-a3d8-4a3b-8a40-9fc1cd4062d0
+
+java:S6201D"LReplace this instanceof check and cast with 'instanceof JSONArray jsonarray'(½»¯18”»Ş“í1J$0ecd046b-548f-43a4-9385-24b36f1c4596
+q
+java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8†¦ß“í1J$5e6213e9-27e8-4c44-a71f-7945ff584338

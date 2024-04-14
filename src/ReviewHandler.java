@@ -17,7 +17,7 @@ public class ReviewHandler {
     }
     public static Boolean readReviews(String genre, HashMap<String, Game> gameMap, String filepath, Scanner scanner) {
         File folder = new File(filepath);
-        File allFiles[] = folder.listFiles();
+        File[] allFiles = folder.listFiles();
         String gameNaam;
         HashMap<String, Double> gameScores = new HashMap<>();
         for (File file : allFiles) {
@@ -145,16 +145,14 @@ public class ReviewHandler {
         Write write = new Write(filename + ".txt");
         write.writeAllLines(answers);
         scanner.nextLine();
-        Enquete enquete = new Enquete();
+        Enquete enquete = new Enquete(scanner);
         enquete.Beginscherm();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //clear the screen
-        System.out.flush();
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //        scanner.next();
         Main.mainMenu();
 

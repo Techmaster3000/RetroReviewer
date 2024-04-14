@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     // Scanner object for user input
-    private static final Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     private static final String filepath = System.getProperty("user.dir") + File.separator + "reviews" + File.separator;
     static GameSearcher gameSearcher = new GameSearcher(scanner);
     static ReviewHandler reviewHandler = new ReviewHandler();
@@ -103,6 +103,7 @@ public class Main {
         for (String genre : genreLijst) {
             System.out.println((genreLijst.indexOf(genre) + 1) + ": " + genre);
         }
+        System.out.println("*: Alle reviews");
         scanner.nextLine();
         while (true) {
             String keuze = scanner.nextLine();
@@ -125,13 +126,11 @@ public class Main {
         //tell them to press enter to go back to the main menu
         System.out.println("Druk op enter om terug te gaan naar het hoofdmenu");
         scanner.nextLine();
-        scanner.nextLine();
         //clear the screen
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
         mainMenu();
-
     }
 
 

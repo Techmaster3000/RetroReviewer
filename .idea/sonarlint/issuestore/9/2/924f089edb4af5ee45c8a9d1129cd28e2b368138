@@ -1,17 +1,32 @@
 
 œ
-java:S2293a"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñ´¡8€ª””í1J$693f68f3-031e-4503-a721-4eb9e30a907a
- 	java:S135k"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ8ª””í1J$253e8670-741f-433f-81fd-ff623b8f7925
-]
-java:S1220""Move this file to a named package.8‚ª””í1J$d7fa024f-580c-47aa-857e-3f151b9cbccb
-¡	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŠÎ­Èúÿÿÿÿ8Àª””í1J$8f5af404-e891-415c-bd99-d7491a84a803
-t
-java:S2440",Remove this instantiation of "GameSearcher".(ÂÚ‘Àıÿÿÿÿ8Ãª””í1J$72cdba06-437d-42e3-bb88-929e4334da5a
+java:S2293a"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñ´¡8€ª””í1J$fa856457-e5ca-4441-a9fb-c2b55b71a16d
+ 	java:S135l"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ8ª””í1J$ee26f412-32c3-4a6f-828d-97fb21f3bdc1
+›
+java:S1104"SMake scanner a static final constant or non-public and provide accessors if needed.(¾©´¬øÿÿÿÿ8¥²Ìåí1J$7442db65-c587-47a6-908f-2ba8babb6585
 u
-java:S2440	"-Remove this instantiation of "ReviewHandler".(¥ÿş¬ÿÿÿÿÿ8Äª””í1J$bca7ec4c-d8a7-4265-ae48-c7baf9b81b77
+java:S1444"-Make this "public static scanner" field final(¾©´¬øÿÿÿÿ8¥²Ìåí1J$1926a8a5-c679-4d82-8315-0e9ea9e7aa69
+]
+java:S1220""Move this file to a named package.8‚ª””í1J$b0c0ba7f-a549-4761-9ce9-6234889e5846
+¡	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŠÎ­Èúÿÿÿÿ8Àª””í1J$a769a164-820a-4cca-9c6f-a96b1dfe9d9d
+t
+java:S2440",Remove this instantiation of "GameSearcher".(ÂÚ‘Àıÿÿÿÿ8Ãª””í1J$ca166fff-a4da-4fb8-943a-143f280897ec
+u
+java:S2440	"-Remove this instantiation of "ReviewHandler".(¥ÿş¬ÿÿÿÿÿ8Äª””í1J$ed11b65c-7c0d-424d-9a14-f03cd47c2513
+s
+java:S2440
+"+Remove this instantiation of "JSONHandler".(½“Ë–üÿÿÿÿ8•»®”í1J$5f354dae-dd40-44c7-b47c-ad5c4397689b
+t
+java:S2440"1Remove this instantiation of "UitverkoopSysteem".(„ß°”8•»®”í1J$df867d42-2a15-4d2e-8526-e937bc89bf53
 f
-java:S2119"Save and re-use this "Random".(£Ì«œùÿÿÿÿ8Æª””í1J$626613d3-403e-466b-bbcf-927d49be4b9f
-|
-java:S2864c"4Iterate over the "entrySet" instead of the "keySet".(¨ˆ›ıÿÿÿÿ8Êª””í1J$04193f8f-0b76-43ee-bbb9-ddcd2e322dc5
+java:S2119"Save and re-use this "Random".(£Ì«œùÿÿÿÿ8Æª””í1J$d274be2a-0fad-43ab-971d-69d1a0de823e
 x
-java:S2209u"5Change this instance-reference to a static reference.(§±ÖÊ8Ìª””í1J$8d5f2f48-c532-48b0-8c66-8a94d0d57150
+java:S2209M"5Change this instance-reference to a static reference.(‘‚ô–8š»®”í1J$27f8da00-32c5-4d28-96ba-a7b9ce27e33c
+x
+java:S2209P"5Change this instance-reference to a static reference.(“ë¬Ë8š»®”í1J$e3629b2f-5423-4b57-8b1f-d80834208287
+|
+java:S2864c"4Iterate over the "entrySet" instead of the "keySet".(¨ˆ›ıÿÿÿÿ8Êª””í1J$581160a8-b03e-4bfd-9e71-9eac7c99f622
+x
+java:S2209v"5Change this instance-reference to a static reference.(§±ÖÊ8Ìª””í1J$6d21207d-a45d-4760-86f7-abc5d6d6dae9
+~
+java:S2209‹"5Change this instance-reference to a static reference.(ª¢•ÿÿÿÿÿ8»®”í1J$bae0ea53-298a-4965-9fe5-406011e21d6e

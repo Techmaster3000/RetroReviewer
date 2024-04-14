@@ -4,7 +4,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Enquete {
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner;
+
+    /*
+   Enquete Syntax:
+            * boven elke vraag
+            ] = multiple choice vraag
+            < = open vraag
+            € = conditionele vraag
+            cijfer na € = index van de vraag waarvan het antwoord moet overeenkomen met het antwoord van de conditionele vraag
+   */
+    public Enquete(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
 
     public static void Beginscherm() {
         System.out.println();
